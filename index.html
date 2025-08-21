@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Title Bar-->
+    <title>Helyx Labs</title>
+    <link rel="icon" type="image/x-icon" href="">
+
+    <!--External Stylesheets-->
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="home.css">
+
+    <!--Google Fonts Connection-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!--Primary Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@500&family=Open+Sans:wght@400;600&family=Nunito:wght@600&display=swap" rel="stylesheet">
+
+    <!--Special Texts Font-->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
+    <!--Icon Stylesheet-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+
+    <section id="myNav" class="overlay">
+        <div class="overlay-content">
+            <div class="overlay-topnav">
+                <a href="index.html">Home</a>
+                <a href="#about">About</a>
+                <a href="models.html">Models</a>
+                <a href="#feedback">Feedback</a>
+                <a href="javascript:void(0)" class="close-btn" onclick="closeNav()"><i class="material-icons">close</i></a>
+            </div>
+        </div>
+    </section>
+
+    <header class="no-select" id="topnav">
+        <div class="extra-div"></div>
+        <div class="topnav-left">
+            <div class="logo-container">
+                <a href="index.html">Helyx Labs</a>
+            </div>
+            <div class="navbar">
+                <a href="index.html">Home</a>
+                <a href="#about">About</a>
+                <a href="models.html">Models</a>
+                <a href="#feedback">Feedback</a>
+                <a href="#login">Login</a>
+            </div>
+        </div>
+        <div class="topnav-right">
+            <i class="material-icons" onclick="openNav()">menu</i>
+        </div>
+    </header>
+
+    <script>
+        let prevScrollpos = window.pageYOffset;
+
+        window.addEventListener('scroll', () => {
+            const currentScrollPos = window.pageYOffset;
+            const navbar = document.getElementById("topnav");
+
+            if (prevScrollpos > currentScrollPos) {
+                navbar.style.top = "0"; // Show header when scrolling up
+            } else {
+                navbar.style.top = "-7vh"; // Fully hide header when scrolling down
+            }
+            prevScrollpos = currentScrollPos;
+        });
+    </script>
+
+    <script>
+        function openNav() {
+            document.getElementById("myNav").style.width = "100%";
+        }
+      
+        function closeNav() {
+            document.getElementById("myNav").style.width = "0%";
+        }
+    </script>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="top-border"></div>
+            <div class="hero-text">
+                <h1>Code, Automate, Accelerate</h1>
+                <p>
+                    At Helyx Labs, we build intelligent tools that help people work faster and smarter — using the combined power of AI and code.
+                </p>
+                <button><a href="https://x.com/HelyxLabs" style="text-decoration: none; color: inherit;">Join Helyx Labs</a></button>
+                        <!--Later Change 'X' URL with 'joinus.html' page-->
+            </div>
+            <div class="bottom-border"></div>
+        </div>
+        <div class="scroll-down no-select" id="scroll-icon">
+            <i class="material-icons">keyboard_arrow_down</i>
+        </div>
+        <div class="hero-image-credits no-select">
+            Photo by <a href="https://unsplash.com/@fabioha?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"><span class="accent">fabio</span></a> on 
+            <a href="https://unsplash.com/photos/geometric-shape-digital-wallpaper-oyXis2kALVg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"><span class="accent">Unsplash</span></a>
+        </div>
+    </section>
+
+    <section class="about-us">
+        <div class="content-container">
+            <div class="left-content">
+                <h2>About</h2>
+                <p class="tagline">You spark the thought, and Helyx Labs brings it to life.</p>
+    
+                <div class="info-block">
+                    <p>
+                        At Helyx Labs, we build intelligent tools that help people work faster and smarter — using the combined power of AI and code.
+                    </p>
+                    <hr style="margin: 0;" />
+                    <p>
+                        Our mission is to remove friction from everyday workflows, automate what’s repetitive, and give creators, developers, and thinkers more time to focus on what truly matters.
+                        With every solution, we aim to turn complexity into clarity, and effort into efficiency.
+                    </p>
+                </div>
+            </div>
+            <div class="right-content">
+                <img src="temp_horizontal.jpg">
+                <div class="image-credits no-select">
+                    Photo by <a href="https://unsplash.com/@jerrografie?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"><span class="accent">James Jeremy Beckers</span></a> on 
+                    <a href="https://unsplash.com/photos/blue-and-black-laptop-computer-aleDeZrv_JE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"><span class="accent">Unsplash</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="how-it-works">
+        <div class="content-container">
+            <div class="left-content">
+                <img src="temp_horizontal.jpg">
+                <div class="image-credits no-select">
+                    Photo by <a href="https://unsplash.com/@jerrografie?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"><span class="accent">James Jeremy Beckers</span></a> on 
+                    <a href="https://unsplash.com/photos/blue-and-black-laptop-computer-aleDeZrv_JE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"><span class="accent">Unsplash</span></a>
+                </div>
+            </div>
+            <div class="right-content">
+                <h2>How it Works</h2>
+                <p class="tagline">A system that thinks ahead of you</p>
+    
+                <div class="info-block">
+                    <p>
+                        At Helyx Labs, we don’t just build tools — we engineer intelligent systems that think ahead for you. 
+                        Our process starts with identifying the bottlenecks in modern workflows, whether it’s writing code, analyzing data, or managing creative tasks. 
+                        Then we inject AI into the mix — not just as a gimmick, but as a genuine accelerator. 
+                        By combining code automation, smart suggestions, and natural interfaces, our systems adapt to the way you work — not the other way around.
+                    </p>
+                    <hr style="margin: 0; border-color: #2471a3;" />
+                    <p>
+                        Each Helyx project follows a simple formula:
+                        <br>
+                        <strong> Problem → Design → AI-infused Logic → Seamless Output. </strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <button onclick="topFunction()" id="topBtn"><i class="material-icons">keyboard_arrow_up</i></button>
+
+    <script>
+        // Get the button:
+        let mybutton = document.getElementById("topBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+    </script>
+
+    <footer>
+
+    </footer>
+
+</body>
+</html>

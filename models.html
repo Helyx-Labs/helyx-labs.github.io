@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Title Bar-->
+    <title>Helyx Models</title>
+    <link rel="icon" type="image/x-icon" href="">
+
+    <!--External Stylesheets-->
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="models.css">
+
+    <!--Google Fonts Connection-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!--Primary Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@500&family=Open+Sans:wght@400;600&family=Nunito:wght@600&display=swap" rel="stylesheet">
+
+    <!--Special Texts Font-->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
+    <!--Icon Stylesheet-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+        <section id="myNav" class="overlay">
+        <div class="overlay-content">
+            <div class="overlay-topnav">
+                <a href="index.html">Home</a>
+                <a href="#about">About</a>
+                <a href="models.html">Models</a>
+                <a href="#feedback">Feedback</a>
+                <a href="javascript:void(0)" class="close-btn" onclick="closeNav()"><i class="material-icons">close</i></a>
+            </div>
+        </div>
+    </section>
+
+    <header class="no-select" id="topnav">
+        <div class="extra-div"></div>
+        <div class="topnav-left">
+            <div class="logo-container">
+                <a href="index.html">Helyx Labs</a>
+            </div>
+            <div class="navbar">
+                <a href="index.html">Home</a>
+                <a href="#about">About</a>
+                <a href="models.html">Models</a>
+                <a href="#feedback">Feedback</a>
+                <a href="#login">Login</a>
+            </div>
+        </div>
+        <div class="topnav-right">
+            <i class="material-icons" onclick="openNav()">menu</i>
+        </div>
+    </header>
+
+    <script>
+        let prevScrollpos = window.pageYOffset;
+
+        window.addEventListener('scroll', () => {
+            const currentScrollPos = window.pageYOffset;
+            const navbar = document.getElementById("topnav");
+
+            if (prevScrollpos > currentScrollPos) {
+                navbar.style.top = "0"; // Show header when scrolling up
+            } else {
+                navbar.style.top = "-7vh"; // Fully hide header when scrolling down
+            }
+            prevScrollpos = currentScrollPos;
+        });
+    </script>
+
+    <script>
+        function openNav() {
+            document.getElementById("myNav").style.width = "100%";
+        }
+      
+        function closeNav() {
+            document.getElementById("myNav").style.width = "0%";
+        }
+    </script>
+
+    <section class="models-section">
+        <h1>Models</h1>
+        <p>Explore our range of models designed to enhance your experience.</p>
+        <div class="model-list">
+            <div class="model-item">
+                <h2>Helyx Labs: Prototype 1</h2>
+                <p>This model features Helyx Ignite, the automatic app/website opener tool.
+                    You either type in the command or use the voice command to open the app/website.
+                    It is designed to be fast and efficient, making your workflow smoother.
+                </p>
+                <a href="https://github.com/Hem-code/helyxlabs_download/releases/download/v0.1.0/helyxlabs_proto_v0.1.0.zip" download>Download Helyx Labs v. 0.1.0</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
