@@ -1,195 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Helyx Labs • Build the Future, Faster</title>
+  <link rel="icon" type="image/x-icon" href="logo.png">
+  <meta name="description" content="Helyx Labs makes AI × code tools that feel like the future. Ship-now utilities and deep-tech experiments for people who build." />
+  <style>
+    :root{
+      --bg-1:#23262f; --bg-2:#181a20; --accent:#f7ca18; --t1:#faf9f6; --t2:#a9cce3;
+      --radius:20px; --shadow:0 12px 40px rgba(0,0,0,.35); --maxw:1120px;
+    }
+    *{box-sizing:border-box}
+    html,body{height: max-content; min-height:100%;}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica Neue,Arial;line-height:1.6;color:var(--t1);
+      background:
+        radial-gradient(1200px 800px at 15% -10%, rgba(247,202,24,.09), transparent 60%),
+        radial-gradient(1000px 600px at 110% 10%, rgba(169,204,227,.08), transparent 60%),
+        linear-gradient(180deg,var(--bg-1),var(--bg-2));
+      overflow-x:hidden;
+    }
+    a{color:var(--t2);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:20px;}
 
-    <!--Title Bar-->
-    <title>Helyx Labs</title>
-    <link rel="icon" type="image/x-icon" href="">
+    /* Futuristic header */
+    header{position:sticky;top:0;z-index:40;backdrop-filter:saturate(120%) blur(10px);
+      background:linear-gradient(180deg,rgba(24,26,32,.85),rgba(24,26,32,.55));
+      border-bottom:1px solid rgba(255,255,255,.06)}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width: 100px; height:50px;}
+    .logo img{width:100%;height:100%;object-fit:contain;display:block;border-radius: 15px;}
+    nav{display:flex;gap:18px;align-items:center}
+    .pill{display:inline-block;padding:8px 12px;border-radius:999px;background:var(--accent);color:#181a20;font-weight:800;letter-spacing:.4px;box-shadow:0 8px 24px rgba(247,202,24,.25)}
 
-    <!--External Stylesheets-->
-    <link rel="stylesheet" href="common.css">
-    <link rel="stylesheet" href="home.css">
+    /* Starfield */
+    .stars, .glow{position:fixed;inset:0;pointer-events:none}
+    .stars{background:radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.7), transparent 60%),
+                         radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,.5), transparent 60%),
+                         radial-gradient(1px 1px at 20% 80%, rgba(255,255,255,.6), transparent 60%),
+                         radial-gradient(1px 1px at 80% 70%, rgba(255,255,255,.6), transparent 60%);
+      opacity:.35;filter:blur(.2px)}
+    .glow{
+      position:fixed;inset:0;pointer-events:none;
+      background:radial-gradient(600px 300px at 50% -10%, rgba(247,202,24,.12), transparent 70%);
+      background-repeat: no-repeat;
+    }
 
-    <!--Google Fonts Connection-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    /* Hero */
+    .hero{padding:64px 0 36px}
+    .super{font-size:clamp(2.2rem,3.6vw + 1rem,4rem);margin:0 0 10px;letter-spacing:.6px}
+    .tag{color:var(--t2);opacity:.95}
 
-    <!--Primary Fonts-->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@500&family=Open+Sans:wght@400;600&family=Nunito:wght@600&display=swap" rel="stylesheet">
+    /* AI input slab */
+    .slab{margin-top:28px;background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.09);border-radius:24px;padding:16px;box-shadow:var(--shadow)}
+    .row{display:grid;grid-template-columns:1fr auto;gap:10px}
+    .in{width:100%;background:#101218;border:1px solid rgba(255,255,255,.08);color:var(--t1);
+      padding:14px 14px;border-radius:16px;font-size:1.05rem;outline:none}
+    .in::placeholder{color:rgba(169,204,227,.7)}
+    .btn{border:0;border-radius:14px;padding:0 16px;font-weight:800;letter-spacing:.4px;background:var(--accent);color:#101218;cursor:pointer}
+    .btn:disabled{opacity:.7;cursor:not-allowed}
+    .console{margin-top:12px;background:#0e1116;border:1px dashed rgba(255,255,255,.1);border-radius:14px;padding:14px;min-height:68px}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
 
-    <!--Special Texts Font-->
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    .status{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:8px 12px;margin-top:12px;
+      background:rgba(247,202,24,.12);border:1px solid rgba(247,202,24,.35);color:var(--t1);font-weight:700}
+    .dot{width:8px;height:8px;border-radius:999px;background:var(--accent);box-shadow:0 0 12px rgba(247,202,24,.95)}
 
-    <!--Icon Stylesheet-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    /* Features */
+    .grid{display:grid;gap:20px;margin-top:34px}
+    @media(min-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:20px;box-shadow:var(--shadow)}
+    .card h3{margin:0 0 8px}
+    .mini{color:var(--t2)}
+
+    /* Showcase */
+    .show{display:grid;gap:20px;margin-top:20px}
+    @media(min-width:900px){.show{grid-template-columns:1.2fr .8fr}}
+
+    /* Footer */
+    footer{margin:56px 0 24px;color:var(--t2)}
+    .mark{position:relative}
+    .mark::after{content:"";position:absolute;left:0;bottom:-6px;height:6px;width:60px;border-radius:999px;background:linear-gradient(90deg,var(--accent),transparent);opacity:.85}
+  </style>
 </head>
 <body>
+  <div class="stars" aria-hidden="true"></div>
+  <div class="glow" aria-hidden="true"></div>
 
-    <section id="myNav" class="overlay">
-        <div class="overlay-content">
-            <div class="overlay-topnav">
-                <a href="index.html">Home</a>
-                <a href="#about">About</a>
-                <a href="models.html">Models</a>
-                <a href="#feedback">Feedback</a>
-                <a href="javascript:void(0)" class="close-btn" onclick="closeNav()"><i class="material-icons">close</i></a>
-            </div>
-        </div>
-    </section>
+  <header>
+    <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:18px">
+      <div class="brand">
+        <div class="logo"><img src="logo.png" alt="Logo"></div>
+      </div>
+      <nav>
+        <a href="products.html">Products</a>
+        <a href="#labs">Labs</a>
+        <a href="community.html">Community</a>
+        <a class="pill" href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
 
-    <header class="no-select" id="topnav">
-        <div class="extra-div"></div>
-        <div class="topnav-left">
-            <div class="logo-container">
-                <a href="index.html">Helyx Labs</a>
-            </div>
-            <div class="navbar">
-                <a href="index.html">Home</a>
-                <a href="#about">About</a>
-                <a href="models.html">Models</a>
-                <a href="#feedback">Feedback</a>
-                <a href="#login">Login</a>
-            </div>
-        </div>
-        <div class="topnav-right">
-            <i class="material-icons" onclick="openNav()">menu</i>
-        </div>
-    </header>
-
-    <script>
-        let prevScrollpos = window.pageYOffset;
-
-        window.addEventListener('scroll', () => {
-            const currentScrollPos = window.pageYOffset;
-            const navbar = document.getElementById("topnav");
-
-            if (prevScrollpos > currentScrollPos) {
-                navbar.style.top = "0"; // Show header when scrolling up
-            } else {
-                navbar.style.top = "-7vh"; // Fully hide header when scrolling down
-            }
-            prevScrollpos = currentScrollPos;
-        });
-    </script>
-
-    <script>
-        function openNav() {
-            document.getElementById("myNav").style.width = "100%";
-        }
-      
-        function closeNav() {
-            document.getElementById("myNav").style.width = "0%";
-        }
-    </script>
-
+  <main class="wrap">
+    <!-- Hero -->
     <section class="hero">
-        <div class="hero-content">
-            <div class="top-border"></div>
-            <div class="hero-text">
-                <h1>Code, Automate, Accelerate</h1>
-                <p>
-                    At Helyx Labs, we build intelligent tools that help people work faster and smarter — using the combined power of AI and code.
-                </p>
-                <button><a href="https://x.com/HelyxLabs" style="text-decoration: none; color: inherit;">Join Helyx Labs</a></button>
-                        <!--Later Change 'X' URL with 'joinus.html' page-->
-            </div>
-            <div class="bottom-border"></div>
-        </div>
-        <div class="scroll-down no-select" id="scroll-icon">
-            <i class="material-icons">keyboard_arrow_down</i>
-        </div>
-        <div class="hero-image-credits no-select">
-            Photo by <a href="https://unsplash.com/@fabioha?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"><span class="accent">fabio</span></a> on 
-            <a href="https://unsplash.com/photos/geometric-shape-digital-wallpaper-oyXis2kALVg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"><span class="accent">Unsplash</span></a>
-        </div>
+      <p class="mini">WELCOME TO THE EDGE</p>
+      <h1 class="super"><span class="mark">Type into tomorrow.</span> We’ll meet you there.</h1>
+      <p class="tag">An input bar up front. Because the future starts with a prompt — then gets out of your way.</p>
+
+      <!-- AI Input -->
+      <div class="slab" role="region" aria-labelledby="ai-title">
+        <form class="row" id="ai-form" autocomplete="off">
+          <label class="visually-hidden" for="q">Ask Helyx</label>
+          <input id="q" class="in" name="q" placeholder="Ask Helyx… (e.g., ‘summarize my notes’, ‘convert units’, ‘launch the thing’)" autocomplete="email" />
+          <button id="go" class="btn" type="submit">Run ⇢</button>
+        </form>
+        <div class="console mono" id="console" aria-live="polite" aria-atomic="true"></div>
+        <div class="status"><span class="dot"></span> Experimental interface • Service temporarily unavailable</div>
+      </div>
     </section>
 
-    <section class="about-us">
-        <div class="content-container">
-            <div class="left-content">
-                <h2>About</h2>
-                <p class="tagline">You spark the thought, and Helyx Labs brings it to life.</p>
-    
-                <div class="info-block">
-                    <p>
-                        At Helyx Labs, we build intelligent tools that help people work faster and smarter — using the combined power of AI and code.
-                    </p>
-                    <hr style="margin: 0;" />
-                    <p>
-                        Our mission is to remove friction from everyday workflows, automate what’s repetitive, and give creators, developers, and thinkers more time to focus on what truly matters.
-                        With every solution, we aim to turn complexity into clarity, and effort into efficiency.
-                    </p>
-                </div>
-            </div>
-            <div class="right-content">
-                <img src="temp_horizontal.jpg">
-                <div class="image-credits no-select">
-                    Photo by <a href="https://unsplash.com/@jerrografie?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"><span class="accent">James Jeremy Beckers</span></a> on 
-                    <a href="https://unsplash.com/photos/blue-and-black-laptop-computer-aleDeZrv_JE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"><span class="accent">Unsplash</span></a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="how-it-works">
-        <div class="content-container">
-            <div class="left-content">
-                <img src="temp_horizontal.jpg">
-                <div class="image-credits no-select">
-                    Photo by <a href="https://unsplash.com/@jerrografie?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"><span class="accent">James Jeremy Beckers</span></a> on 
-                    <a href="https://unsplash.com/photos/blue-and-black-laptop-computer-aleDeZrv_JE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"><span class="accent">Unsplash</span></a>
-                </div>
-            </div>
-            <div class="right-content">
-                <h2>How it Works</h2>
-                <p class="tagline">A system that thinks ahead of you</p>
-    
-                <div class="info-block">
-                    <p>
-                        At Helyx Labs, we don’t just build tools — we engineer intelligent systems that think ahead for you. 
-                        Our process starts with identifying the bottlenecks in modern workflows, whether it’s writing code, analyzing data, or managing creative tasks. 
-                        Then we inject AI into the mix — not just as a gimmick, but as a genuine accelerator. 
-                        By combining code automation, smart suggestions, and natural interfaces, our systems adapt to the way you work — not the other way around.
-                    </p>
-                    <hr style="margin: 0; border-color: #2471a3;" />
-                    <p>
-                        Each Helyx project follows a simple formula:
-                        <br>
-                        <strong> Problem → Design → AI-infused Logic → Seamless Output. </strong>
-                    </p>
-                </div>
-            </div>
-        </div>
+    <!-- Feature grid -->
+    <section class="grid" id="products">
+      <article class="card">
+        <h3>Helyx Core</h3>
+        <p class="mini">Your command center for files, links, launchers, and quick voice Q&A. Minimal clicks. Maximum flow.</p>
+      </article>
+      <article class="card">
+        <h3>Enginuity Suite</h3>
+        <p class="mini">Nine modules from Core to Orbitum — math, physics, aero, thermo, propulsion, and simulation. Calculations that don’t argue back.</p>
+      </article>
+      <article class="card">
+        <h3>Deep‑Tech Lab</h3>
+        <p class="mini">R&D sprints on sustainable materials and next‑gen rocket engines. We prototype where most powerpoints end.</p>
+      </article>
     </section>
 
-    <button onclick="topFunction()" id="topBtn"><i class="material-icons">keyboard_arrow_up</i></button>
+    <!-- Showcase / split -->
+    <section class="show" id="labs">
+      <div class="card">
+        <h3>Why it feels like the future</h3>
+        <ul class="mini">
+          <li><strong>Make it obvious:</strong> no manuals, just momentum.</li>
+          <li><strong>Make it fast:</strong> latency is a design bug.</li>
+          <li><strong>Make it kind:</strong> tools should lower blood pressure.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Join the early wave</h3>
+        <p class="mini">Hop on the waitlist for the AI console and new Enginuity drops.</p>
+        <form class="row" id="wl">
+          <input class="in" name="email" type="email" placeholder="your@email" required />
+          <button class="btn" type="submit">Request access</button>
+        </form>
+        <div class="mini" id="wl-msg" style="margin-top:8px;opacity:.9"></div>
+      </div>
+    </section>
 
-    <script>
-        // Get the button:
-        let mybutton = document.getElementById("topBtn");
+    <!-- Community -->
+    <section id="community" class="grid">
+      <article class="card">
+        <h3>Community</h3>
+        <p class="mini">Ideas, feedback, and the occasional rocket meme. Bring your curiosity.</p>
+        <p class="mini">GitHub • Subreddit • Updates — plug in where you like.</p>
+      </article>
+      <article class="card">
+        <h3>About</h3>
+        <p class="mini">Meet the human(s) behind the keys and the friends who keep the lights weird. <a href="about.html">Read the story</a>.</p>
+      </article>
+      <article class="card">
+        <h3>Changelog</h3>
+        <p class="mini">We ship often. Track the useful bits, not the ceremony.</p>
+      </article>
+    </section>
 
-        // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function() {scrollFunction()};
-
-        function scrollFunction() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                mybutton.style.display = "block";
-            } else {
-                mybutton.style.display = "none";
-            }
-        }
-
-        // When the user clicks on the button, scroll to the top of the document
-        function topFunction() {
-            document.body.scrollTop = 0; // For Safari
-            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-        }
-    </script>
-
-    <footer>
-
+    <footer style="display:flex;margin-top:40px;justify-content:space-between;align-items:center;padding: 0 25px;">
+      <div>
+        © <span id="y"></span> Helyx Labs • Built with less chaos and more coffee.
+      </div>
+      <div>
+        <a href="docs/tc.pdf" target="_blank">Terms & Conditions</a> •
+        <a href="docs/privacy_policy.pdf" target="_blank">Privacy Policy</a> •
+        <a href="docs/license.pdf" target="_blank">License</a>
+      </div>
     </footer>
+  </main>
 
+  <style>
+    /* small util for a11y */
+    .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+  </style>
+
+  <script>
+    // dynamic year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // AI console behavior — always unavailable but friendly
+    const form = document.getElementById('ai-form');
+    const input = document.getElementById('q');
+    const consoleEl = document.getElementById('console');
+    const go = document.getElementById('go');
+
+    function writeLine(text){
+      const p = document.createElement('div');
+      p.textContent = text; consoleEl.appendChild(p); consoleEl.scrollTop = consoleEl.scrollHeight;
+    }
+
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const q = (input.value||'').trim();
+      if(!q){ input.focus(); return; }
+      go.disabled = true; writeLine('> ' + q);
+      let dots = 0; const id = setInterval(()=>{dots=(dots+1)%4; consoleEl.lastChild && (consoleEl.lastChild.textContent = consoleEl.lastChild.textContent.replace(/\.*$/, '') + '.'.repeat(dots));}, 350);
+      const line = document.createElement('div'); line.textContent = '⏳ processing'; consoleEl.appendChild(line);
+      setTimeout(()=>{
+        clearInterval(id);
+        const msg = '⚠️ AI service temporarily unavailable. Try again later or join the waitlist below.';
+        line.textContent = msg; go.disabled = false; input.value='';
+      }, 1400);
+    });
+
+    // waitlist mock
+    const wl = document.getElementById('wl');
+    const wlMsg = document.getElementById('wl-msg');
+    wl.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      wlMsg.textContent = 'Thanks! You’re on the list. We’ll ping you when access opens.';
+    });
+  </script>
 </body>
 </html>
