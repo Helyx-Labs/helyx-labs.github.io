@@ -119,9 +119,11 @@
           <button id="go" class="btn" type="submit">Run ⇢</button>
         </form>
         <div class="console mono" id="console" aria-live="polite" aria-atomic="true"></div>
-        <div class="status"><span class="dot"></span> Experimental interface • Service temporarily unavailable</div>
+        <div class="status"><span class="dot"></span> Powered with Phi3 by Microsoft</div>
       </div>
     </section>
+
+
 
     <!-- Feature grid -->
     <section class="grid" id="products">
@@ -189,39 +191,89 @@
     </footer>
   </main>
 
+  <!-- 'https://HelyxLabs-ai-model-web-api.hf.space/api' -->
+
   <style>
     /* small util for a11y */
     .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
   </style>
 
   <script>
-    // dynamic year
-    document.getElementById('y').textContent = new Date().getFullYear();
+(function(){
+  const FORM = document.getElementById('ai-form');
+  const INPUT = document.getElementById('q');
+  const CONSOLE = document.getElementById('console');
+  const GO = document.getElementById('go');
+  const STATUS_DOT = document.querySelector('.status .dot');
 
-    // AI console behavior — always unavailable but friendly
-    const form = document.getElementById('ai-form');
-    const input = document.getElementById('q');
-    const consoleEl = document.getElementById('console');
-    const go = document.getElementById('go');
+  // Replace with your actual Space endpoint
+  const API_URL = 'https://HelyxLabs-ai-model-web-api.hf.space/api';
 
-    function writeLine(text){
-      const p = document.createElement('div');
-      p.textContent = text; consoleEl.appendChild(p); consoleEl.scrollTop = consoleEl.scrollHeight;
+  function writeLine(text){
+    const p = document.createElement('div');
+    p.textContent = text;
+    CONSOLE.appendChild(p);
+    CONSOLE.scrollTop = CONSOLE.scrollHeight;
+    return p;
+  }
+
+  function setStatus(busy){
+    if (STATUS_DOT) {
+      STATUS_DOT.style.opacity = busy ? '1' : '0.4';
+      STATUS_DOT.textContent = '●';
     }
+  }
 
-    form.addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const q = (input.value||'').trim();
-      if(!q){ input.focus(); return; }
-      go.disabled = true; writeLine('> ' + q);
-      let dots = 0; const id = setInterval(()=>{dots=(dots+1)%4; consoleEl.lastChild && (consoleEl.lastChild.textContent = consoleEl.lastChild.textContent.replace(/\.*$/, '') + '.'.repeat(dots));}, 350);
-      const line = document.createElement('div'); line.textContent = '⏳ processing'; consoleEl.appendChild(line);
-      setTimeout(()=>{
-        clearInterval(id);
-        const msg = '⚠️ AI service temporarily unavailable. Try again later or join the waitlist below.';
-        line.textContent = msg; go.disabled = false; input.value='';
-      }, 1400);
-    });
+  FORM.addEventListener('submit', async function(ev){
+    ev.preventDefault();
+    const prompt = INPUT.value.trim();
+    if(!prompt) { INPUT.focus(); return; }
+
+    GO.disabled = true;
+    writeLine('> ' + prompt);
+
+    // show "processing..." animation
+    const line = writeLine('⏳ Processing');
+    let dots = 0;
+    const id = setInterval(()=>{
+      dots = (dots+1)%4;
+      line.textContent = '⏳ Processing' + '.'.repeat(dots);
+    }, 350);
+
+    setStatus(true);
+
+try {
+  const resp = await fetch(API_URL, {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ prompt: prompt, max_new_tokens: 200 })
+  });
+
+  if(!resp.ok){
+    const errText = await resp.text();
+    throw new Error('Server error: ' + resp.status + ' ' + errText);
+  }
+
+  const payload = await resp.json();
+  let out = payload.response || '(no response)';
+
+  // Extract only the answer after "# Answer"
+  if (out.includes('# Answer')) {
+    out = out.split('# Answer')[1].trim();
+  }
+
+  line.textContent = out; // replace "processing" with cleaned API output
+} catch(err){
+  line.textContent = '⚠️ ' + err.message;
+} finally {
+  clearInterval(id);
+  GO.disabled = false;
+  INPUT.value = '';
+  setStatus(false);
+}
+
+  });
+})();
 
     // waitlist mock
     const wl = document.getElementById('wl');
