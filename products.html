@@ -1,4 +1,3 @@
-<!-- FILE: products.html -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,97 +5,117 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Products • Helyx Labs</title>
   <link rel="icon" type="image/x-icon" href="logo.png">
-  <meta name="description" content="Explore Helyx Labs projects — Helyx Core, Enginuity, and upcoming experiments." />
+  <meta name="description" content="Helyx Labs — latest app release first. Visit WhisprLink or Ranger Space for related websites." />
   <style>
-    :root{--bg-1:#23262f;--bg-2:#181a20;--accent:#f7ca18;--t1:#faf9f6;--t2:#a9cce3;--radius:20px;--shadow:0 12px 40px rgba(0,0,0,.35);--maxw:1120px}
+    :root{
+      --bg-1:#23262f; --bg-2:#181a20; --accent:#f7ca18;
+      --t1:#faf9f6; --t2:#a9cce3; --card:#27282f;
+      --radius:14px; --shadow:0 12px 40px rgba(0,0,0,.35); --maxw:1120px;
+      --danger:#f85a5a;
+    }
     *{box-sizing:border-box}
-    html,body{height: max-content; min-height: 100%;}
-    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica Neue,Arial;color:var(--t1);background:linear-gradient(180deg,var(--bg-1),var(--bg-2));line-height:1.6}
+    body{
+      margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Cantarell,"Noto Sans",Helvetica,Arial;
+      color:var(--t1);background:linear-gradient(180deg,var(--bg-1),var(--bg-2));line-height:1.6;
+    }
     a{color:var(--t2);text-decoration:none}
 
-    header{position:sticky;top:0;z-index:40;backdrop-filter:saturate(120%) blur(10px);background:linear-gradient(180deg,rgba(24,26,32,.88),rgba(24,26,32,.55));border-bottom:1px solid rgba(255,255,255,.06)}
+    header{position:sticky;top:0;z-index:40;backdrop-filter:saturate(120%) blur(8px);
+      background:linear-gradient(180deg,rgba(24,26,32,.88),rgba(24,26,32,.55));
+      border-bottom:1px solid rgba(255,255,255,.04);
+    }
     .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:20px}
     .brand{display:flex;align-items:center;gap:14px}
-    .logo{width: 100px; height:50px;}
-    .logo img{width:100%;height:100%;object-fit:contain;display:block;border-radius: 15px;}
-    nav{display:flex;gap:18px;align-items:center}
-    nav{display:flex;gap:14px;align-items:center}
-    .pill{display:inline-block;padding:8px 12px;border-radius:999px;background:var(--accent);color:#181a20;font-weight:800}
+    .logo{width:110px;height:44px}
+    .logo img{width:100%;height:100%;object-fit:contain;border-radius:10px;display:block}
+    nav{display:flex;gap:16px;align-items:center}
+    .pill{display:inline-block;padding:8px 12px;border-radius:999px;background:var(--accent);color:#111;font-weight:800}
 
-    .hero{padding:48px 0 8px}
-    .hero h1{font-size:clamp(1.8rem,3vw,2.4rem);margin:0}
+    .hero{padding:34px 0 10px}
+    .hero h1{font-size:clamp(1.6rem,3vw,2.2rem);margin:0}
     .hero p{color:var(--t2);margin:8px 0 0}
 
-    .grid{display:grid;gap:20px;margin-top:22px}
-    @media(min-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}
+    /* layout */
+    .center-grid{display:grid;gap:18px;margin-top:18px}
+    @media(min-width:980px){ .center-grid{grid-template-columns:1fr 380px} }
 
-    .card{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px}
-    .card h3{margin:0}
-    .meta{color:var(--t2);font-size:.95rem}
+    /* product card */
+    .product{
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      border:1px solid rgba(255,255,255,.05);
+      border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);
+      display:flex;flex-direction:column;gap:14px;
+    }
+    .product h2{margin:0;font-size:1.15rem;display:flex;align-items:center;gap:10px}
+    .meta{color:var(--t2);font-size:0.95rem}
+    .latest {
+      background: linear-gradient(180deg, rgba(247,202,24,.06), rgba(247,202,24,.02));
+      border-radius:10px;padding:12px;border:1px solid rgba(247,202,24,.12)
+    }
+    .version {font-weight:800;color:#111;background:var(--accent);display:inline-block;padding:6px 8px;border-radius:8px;font-size:.95rem}
+    .date {color:var(--t2);font-size:0.95rem;margin-left:8px}
+    .notes{color:var(--t2);margin-top:8px;font-size:.95rem}
 
-    .cta-row{display:flex;gap:10px;align-items:center}
-    .btn{border:0;border-radius:12px;padding:10px 14px;font-weight:800;letter-spacing:.3px;background:var(--accent);color:#181a20;cursor:pointer}
+    .row{display:flex;gap:10px;align-items:center}
+    .spacer{flex:1}
+
+    .btn{
+      border:0;border-radius:12px;padding:10px 14px;font-weight:800;letter-spacing:.3px;background:var(--accent);color:#181a20;cursor:pointer;text-decoration:none;display:inline-block
+    }
     .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,.06);color:var(--t1)}
+    .small-link{color:var(--t2);font-size:.9rem;text-decoration:underline;margin-left:8px}
 
-    .coming{color:var(--t2);font-style:italic}
+    /* previous updates list */
+    .previous {margin-top:8px;border-radius:10px;padding:10px;background:rgba(255,255,255,.01);border:1px solid rgba(255,255,255,.02)}
+    .prev-item{padding:10px;border-radius:8px;margin-bottom:10px;background:var(--card);border:1px solid rgba(255,255,255,.3)}
+    .prev-item:last-child{margin-bottom:0}
+    .prev-meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .muted{color:var(--t2);font-size:.9rem}
 
-    footer{margin:40px 0;color:var(--t2)}
-    .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
-      .ecosystem {
-    padding: 4rem 2rem;
-    background: #181a20;
-    text-align: center;
-    color: #faf9f6;
-  }
+    /* outdated badge */
+    .badge{
+      display:inline-block;padding:6px 8px;border-radius:999px;font-weight:800;font-size:.8rem;
+      background:rgba(255,255,255,.06);color:var(--t1)
+    }
+    .badge.outdated{
+      background:linear-gradient(90deg,var(--danger),#c84b4b);color:#fff;
+      box-shadow:0 6px 18px rgba(200,70,70,.12);
+    }
+    .outdated-text{color:#ffd6d6;font-size:.92rem;margin-top:6px}
 
-  .ecosystem .section-title {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    color: #f7ca18;
-  }
+    /* side area (links + quick notes) */
+    .side{
+      display:flex;flex-direction:column;gap:12px;
+    }
+    .side .card{padding:12px}
 
-  .ecosystem .section-subtitle {
-    font-size: 1.1rem;
-    color: #a9cce3;
-    margin-bottom: 2.5rem;
-  }
+    /* websites cards at end */
+    .websites-section{margin-top:26px}
+    .websites-grid{display:grid;gap:16px}
+    @media(min-width:900px){ .websites-grid{grid-template-columns:repeat(2,1fr)} }
+    .site-card{
+      display:flex;gap:14px;align-items:flex-start;background:linear-gradient(180deg, rgba(255,255,255,.01), rgba(255,255,255,.00));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,.04)
+    }
+    .site-thumb{width:96px;height:64px;border-radius:8px;overflow:hidden;background:rgba(255,255,255,.02);flex-shrink:0}
+    .site-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .site-content h3{margin:0;font-size:1.03rem}
+    .site-content p{color:var(--t2);margin:6px 0 0;font-size:0.95rem}
 
-  .modules-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .module-card {
-    background: #23262f;
-    padding: 1.5rem;
-    border-radius: 12px;
-    text-align: left;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-
-  .module-card h3 {
-    color: #f7ca18;
-    margin-bottom: 0.5rem;
-  }
-
-  .module-card p {
-    color: #a9cce3;
-    font-size: 0.95rem;
-  }
-
-  .module-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
-  }
+    footer{margin:28px 0;color:var(--t2);padding:18px}
+    .help{color:var(--t2);font-size:0.95rem;margin-top:6px}
   </style>
 </head>
 <body>
   <header>
     <div class="wrap" style="display:flex;align-items:center;justify-content:space-between">
       <div class="brand">
-        <div class="logo"><img src="logo.png" alt="Logo"></div>
+        <div class="logo"><img src="logo.png" alt="Helyx Labs logo"></div>
+        <div style="line-height:1">
+          <div style="font-weight:800">Helyx Labs</div>
+          <div class="muted" style="font-size:0.85rem;color:var(--t2)">Launcher & workspace automation — this site is Helyx Labs only.</div>
+        </div>
       </div>
+
       <nav>
         <a href="index.html">Home</a>
         <a href="products.html">Products</a>
@@ -107,133 +126,229 @@
   </header>
 
   <main class="wrap">
-    <section class="ecosystem">
-  <h2 class="section-title">The Helyx Ecosystem</h2>
-  <p class="section-subtitle">Explore the core modules powering Helyx Labs</p>
-
-  <div class="modules-grid">
-    <div class="module-card">
-      <h3>Helyx Core</h3>
-      <p>The central brain of Helyx Labs — organizes, optimizes, and powers your workspace seamlessly.</p>
-        <div class="cta-row" style="margin-top:auto">
-          <!-- Download button as requested -->
-          <a class="btn" href="https://github.com/Helyx-Labs/helyx-core/releases/download/v0.1.2/HelyxLabsSetup.exe" download>
-            Download Helyx Core
-          </a>
-        </div>
-    </div>
-
-    <div class="module-card">
-      <h3>Helyx Grid</h3>
-      <p>A dynamic file and folder management system that intelligently sorts and structures your digital life.</p>
-    </div>
-
-    <div class="module-card">
-      <h3>Helyx Aud</h3>
-      <p>Voice-driven intelligence — ask, command, and converse with your AI assistant in real time.</p>
-    </div>
-
-    <div class="module-card">
-      <h3>Helyx Flux</h3>
-      <p>Seamless cross-app and cross-device integration, ensuring your workflows stay uninterrupted.</p>
-    </div>
-
-    <div class="module-card">
-      <h3>Helyx Vision</h3>
-      <p>Visual insights and intuitive dashboards to help you track, analyze, and plan with clarity.</p>
-    </div>
-  </div>
-</section>
-
     <section class="hero">
-      <h1>Our Creations</h1>
-      <p>Small tools. Big experiments. Built to unstick you.</p>
+      <h1>Helyx Labs — releases</h1>
+      <p>Latest version on top. Older versions listed below. Outdated versions are clearly marked and not recommended.</p>
     </section>
 
-    <section class="grid">
-      <article class="card">
-        <h3>Helyx Core <span class="meta">(Download)</span></h3>
-        <p class="meta">Launcher, quick-access, voice Q&A, and tidy file automation.</p>
-        <p>Helyx Core helps you cut the clutter and move faster. Use launchers, saved workspaces, and small automations to keep your flow intact.</p>
-        <div class="cta-row" style="margin-top:auto">
-          <!-- Download button as requested -->
-          <a class="btn" href="https://github.com/Helyx-Labs/helyx-core/releases/download/v0.1.2/HelyxLabsSetup.exe" download>
-            Download
-          </a>
+    <div class="center-grid">
+      <!-- MAIN: Helyx Labs product column -->
+      <section>
+        <article class="product" id="helyx-labs">
+          <h2>Helyx Labs <span class="meta">(Launcher, quick-access & file automations)</span></h2>
+
+          <!-- LATEST (edit manually) -->
+          <div class="latest" aria-live="polite">
+            <div class="row" style="align-items:center">
+              <div>
+                <span class="version">v0.1.3</span>
+                <span class="date">• Oct 12, 2025</span>
+                <span style="margin-left:10px" class="badge">Latest</span>
+              </div>
+
+              <div class="spacer"></div>
+
+              <div class="row">
+                <!-- Replace download link with your GitHub release asset if needed -->
+                <a class="btn" href="https://github.com/Helyx-Labs/helyx-core/releases/download/v0.1.3/HelyxLabsSetup.exe" download>Download</a>
+              </div>
+            </div>
+
+            <div class="notes">
+              Added updater logic to auto-check for new versions. Improved stability and fixed minor bugs. Added Helyx Cogni to chat with AI. Improved Helyx Ignite for launching apps and websites.
+            </div>
+
+            <div style="margin-top:8px">
+              <a class="small-link" href="docs/license-v0.1.3.pdf">LICENSE</a>
+            </div>
+          </div>
+
+          <!-- PREVIOUS UPDATES (manual) -->
+          <div class="previous" data-open="true">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <strong class="muted">Previous updates</strong>
+              <div><button class="toggle-btn" onclick="toggleList(this)">Collapse</button></div>
+            </div>
+
+            <div class="prev-list" style="margin-top:10px">
+
+            <!-- Most recent older (still supported) -->
+
+            <!--
+            <div class="prev-item">
+                <div class="prev-meta">
+                  <div><strong>v0.1.1</strong></div>
+                  <div class="muted">• Sep 18, 2025</div>
+                  <div class="muted">• Bugfix: installer path resolution; improved logging & telemetry opt-out.</div>
+                </div>
+            </div>
+        -->
+
+              <div class="prev-item" aria-hidden="false">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                  <div>
+                    <div class="prev-meta">
+                      <div><strong>v0.1.2</strong></div>
+                      <div class="muted">• Sept 28, 2025</div>
+                      <div class="muted">• Added install & uninstall GUI</div>
+                    </div>
+                  </div>
+                  <br>
+                  <div>
+                    <span class="badge outdated">Outdated</span>
+                  </div>
+                </div>
+                <div style="margin-top:8px;color:var(--t2);font-size:.9rem">
+                  If users have this installed, recommend updating to the latest version above. Only if you are extremely inclined to use an older version: <a class="small-link" href="https://github.com/Helyx-Labs/helyx-core/releases/tag/v0.1.2">Download Here</a>
+                </div>
+              </div>
+
+            <div class="prev-item" aria-hidden="false">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                  <div>
+                    <div class="prev-meta">
+                      <div><strong>v0.1.1</strong></div>
+                      <div class="muted">• Aug 24, 2025</div>
+                      <div class="muted">• Improved UI with a hint at upcoming features.</div>
+                    </div>
+                  </div>
+                  <br>
+                  <div>
+                    <span class="badge outdated">Outdated</span>
+                  </div>
+                </div>
+                <div style="margin-top:8px;color:var(--t2);font-size:.9rem">
+                  If users have this installed, recommend updating to the latest version above. Only if you are extremely inclined to use an older version: <a class="small-link" href="https://github.com/Helyx-Labs/helyx-core/releases/tag/v0.1.1">Download Here</a>
+                </div>
+              </div>
+
+              <!-- Outdated version example -->
+              <div class="prev-item" aria-hidden="false">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                  <div>
+                    <div class="prev-meta">
+                      <div><strong>v0.1.0</strong></div>
+                      <div class="muted">• Aug 17, 2025</div>
+                      <div class="muted">• Initial public release with a minimal working binary.</div>
+                    </div>
+                  </div>
+                  <br>
+                  <div>
+                    <span class="badge outdated">Outdated</span>
+                  </div>
+                </div>
+                <div style="margin-top:8px;color:var(--t2);font-size:.9rem">
+                  If users have this installed, recommend updating to the latest version above. Only if you are extremely inclined to use an older version: <a class="small-link" href="https://github.com/Hem-code/helyxlabs_download/releases/download/v0.1.0/helyxlabs_proto_v0.1.0.zip">Download Here</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- SIDE: quick links + external sites -->
+      <aside class="side">
+        <div class="product card">
+          <h3 style="margin:0">Quick links</h3>
+          <div style="margin-top:8px" class="muted">
+            <div>• GitHub releases: <a class="small-link" href="https://github.com/Helyx-Labs/helyx-core/releases">github.com/Helyx-Labs/helyx-core/releases</a></div>
+            <div style="margin-top:6px">• LICENSE: <a class="small-link" href="docs/universal-license.pdf">helyx-labs/LICENSE</a></div>
+          </div>
         </div>
-      </article>
 
-      <article class="card">
-        <h3>Enginuity Suite</h3>
-        <p class="meta">Core • Flux • Ascent • Aero • Propulse • Structura • Orbitum • Thermo • Simul</p>
-        <p>Enginuity is a modular computation platform that starts with geometry & basic physics, and grows into orbital mechanics and propulsion calculators.</p>
-        <div class="cta-row" style="margin-top:auto">
-          <button class="btn secondary">Learn more</button>
-          <button class="btn">Try demo</button>
+        <div class="product card">
+          <h3 style="margin:0">Notes</h3>
+          <div style="margin-top:8px" class="muted">
+            This site hosts only Helyx Labs app releases. If you want to explore related websites, see WhisprLink and Ranger Space below.
+          </div>
         </div>
-      </article>
+      </aside>
+    </div>
 
-      <article class="card">
-        <h3>WhisprAI</h3>
-        <p class="coming">Coming soon — a personal AI shell for offline-first workflows.</p>
-        <p>WhisprAI will help you search, summarize, and automate tasks locally with privacy-minded design.</p>
-        <div class="cta-row" style="margin-top:auto">
-          <button class="btn secondary">Roadmap</button>
-          <button class="btn">Request invite</button>
-        </div>
-      </article>
+    <!-- External websites cards (WhisprLink & Ranger Space) -->
+    <section class="websites-section">
+      <h2 style="margin:0 0 12px 0">Explore more</h2>
+      <div class="websites-grid">
 
-      <article class="card">
-        <h3>Ranger Series</h3>
-        <p class="coming">Research & prototypes on novel propulsion and materials.</p>
-        <p>From RDE concepts to CO₂-to-composite pipelines — these are the long‑term moonshots.</p>
-        <div class="cta-row" style="margin-top:auto">
-          <button class="btn secondary">Read research notes</button>
-          <button class="btn">Collaborate</button>
-        </div>
-      </article>
+        <article class="site-card">
+          <div class="site-thumb">
+            <!-- Optional thumbnail: replace or remove -->
+            <img src="images/whisprlink-thumb.png" alt="WhisprLink thumbnail" onerror="this.style.display='none'">
+          </div>
 
-      <article class="card">
-        <h3>Small Utilities</h3>
-        <p class="meta">Launchers, clipboard helpers, quick-snap renamers.</p>
-        <p>Tiny tools that do one job well — designed so you don’t have to hack them together yourself.</p>
-        <div class="cta-row" style="margin-top:auto">
-          <button class="btn">Browse utilities</button>
-          <button class="btn secondary">GitHub</button>
-        </div>
-      </article>
+          <div class="site-content">
+            <h3>WhisprLink <span class="muted" style="font-size:.9rem">• Separate website</span></h3>
+            <p>WhisprLink is the dedicated website for the offline-friendly AI linking, file integrations, and sharing workflows. Visit the site to request invites, view docs, and learn more.</p>
+            <div style="margin-top:10px">
+              <!-- Replace href with actual redirect URL for WhisprLink -->
+              <a class="btn" href="https://whispr-link.onrender.com" target="_blank" rel="noopener noreferrer">Visit WhisprLink</a>
+              <a class="btn secondary" href="https://whisprlink.example/docs" target="_blank" rel="noopener noreferrer">Docs</a>
+            </div>
+          </div>
+        </article>
 
-      <article class="card">
-        <h3>SDK & Contributors</h3>
-        <p class="meta">APIs, contribution guide, and community plugins.</p>
-        <p>We plan to open APIs and a plugin ecosystem so others can build on top of Helyx Core & Enginuity.</p>
-        <div class="cta-row" style="margin-top:auto">
-          <button class="btn secondary">Contribute</button>
-          <button class="btn">Docs</button>
-        </div>
-      </article>
-    </section>
+        <article class="site-card">
+          <div class="site-thumb">
+            <!-- Optional thumbnail: replace or remove -->
+            <img src="images/rangerspace-thumb.png" alt="Ranger Space thumbnail" onerror="this.style.display='none'">
+          </div>
 
-    <section style="margin-top:22px" class="card">
-      <h3>Download & Install</h3>
-      <p class="meta">Downloads are signed and released via GitHub releases. If you see a mismatch, don’t run it — tell us.</p>
-      <p class="small">You can grab the latest Helyx Core directly from the download button above or visit the releases page on GitHub.</p>
-    </section>
+          <div class="site-content">
+            <h3>Ranger Space <span class="muted" style="font-size:.9rem">• Separate website</span></h3>
+            <p>Ranger Space hosts research, prototypes, and lab notes on propulsion and materials (RDE concepts, CO₂→composites). Visit to read research logs and collaboration notes.</p>
+            <div style="margin-top:10px">
+              <!-- Replace href with actual redirect URL for Ranger Space -->
+              <a class="btn" href="https://ranger-space.onrender.com" target="_blank" rel="noopener noreferrer">Visit Ranger Space</a>
+              <a class="btn secondary" href="https://rangerspace.example/research" target="_blank" rel="noopener noreferrer">Research notes</a>
+            </div>
+          </div>
+        </article>
 
-    <footer style="display:flex;margin-top:40px;justify-content:space-between;align-items:center;padding: 0 25px;">
-      <div>
-        © <span id="y"></span> Helyx Labs • Built with less chaos and more coffee.
       </div>
+    </section>
+
+    <footer style="display:flex;margin-top:24px;justify-content:space-between;align-items:center;padding: 0 2px 20px 2px;">
+      <div>© <span id="y"></span> Helyx Labs • Built with less chaos and more coffee.</div>
       <div>
         <a href="docs/tc.pdf" target="_blank">Terms & Conditions</a> •
         <a href="docs/privacy_policy.pdf" target="_blank">Privacy Policy</a> •
-        <a href="docs/license.pdf" target="_blank">License</a>
+        <a href="docs/universal-license.pdf" target="_blank">License</a>
       </div>
     </footer>
   </main>
 
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Toggle previous-updates list visibility
+    function toggleList(btn){
+      const prevContainer = btn.closest('.previous');
+      if(!prevContainer) return;
+      const list = prevContainer.querySelector('.prev-list');
+      const isOpen = prevContainer.getAttribute('data-open') === 'true';
+      if(isOpen){
+        list.style.display = 'none';
+        prevContainer.setAttribute('data-open','false');
+        btn.textContent = 'Expand';
+      } else {
+        list.style.display = '';
+        prevContainer.setAttribute('data-open','true');
+        btn.textContent = 'Collapse';
+      }
+    }
+
+    // initialize previous lists
+    document.querySelectorAll('.previous').forEach(p => {
+      const btn = p.querySelector('.toggle-btn');
+      if(p.getAttribute('data-open') === 'false'){
+        const list = p.querySelector('.prev-list');
+        if(list) list.style.display = 'none';
+        if(btn) btn.textContent = 'Expand';
+      } else {
+        if(btn) btn.textContent = 'Collapse';
+      }
+    });
   </script>
 </body>
 </html>
