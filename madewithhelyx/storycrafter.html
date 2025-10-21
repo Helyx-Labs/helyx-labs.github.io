@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StoryCrafter | Helyx Cogni</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: radial-gradient(circle at top left, #0d111a, #05070c);
+      color: #fdfaf6;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      width: 92vw;
+      height: 94vh;
+      background: rgba(20, 20, 30, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 25px rgba(255, 140, 40, 0.1);
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    header h1 {
+      color: #ff9e45;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    header p {
+      color: #fac898;
+      margin: 5px 0 15px;
+    }
+
+    /* Inputs */
+    .input-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .input-grid input {
+      background: #1a1a25;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 8px;
+      padding: 10px;
+      color: #fff;
+      font-size: 15px;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    .input-grid input:focus {
+      border-color: #ff9e45;
+      background: #222230;
+    }
+
+    /* Story box */
+    textarea {
+      width: 100%;
+      flex: 1;
+      background: #1a1a25;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 10px;
+      padding: 12px;
+      resize: none;
+      font-size: 15px;
+      margin-bottom: 15px;
+      outline: none;
+      transition: 0.2s;
+      width: calc(100% - 24px);
+    }
+
+    textarea:focus {
+      border-color: #ff9e45;
+      background: #222230;
+    }
+
+    /* Evaluate Button */
+    .evaluate-btn, #aboutBtn {
+      align-self: center;
+      background: linear-gradient(90deg, #ff9e45, #ffb366);
+      color: #101010;
+      font-weight: 600;
+      padding: 10px 26px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+      margin-bottom: 10px;
+    }
+
+    .evaluate-btn:hover, #aboutBtn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 12px rgba(255, 158, 69, 0.5);
+    }
+
+    /* Evaluation area */
+    .result {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 10px 15px;
+      border-radius: 8px;
+      text-align: center;
+      color: #ffb366;
+      font-weight: 500;
+      font-size: 1rem;
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      margin-top: 8px;
+      color: #888;
+    }
+
+    footer span {
+      color: #ff9e45;
+      font-weight: 500;
+    }
+
+      /* Modal styles */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.75);
+  }
+
+  .modal-content {
+    background: #1e1e2f;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 600px;
+    color: #FAC898;
+    line-height: 1.6;
+    position: relative;
+    box-shadow: 0 0 25px rgba(242,140,40,0.3);
+  }
+
+  .modal h2 {
+    color: #F28C28;
+    text-align: center;
+    margin-top: 0;
+  }
+
+  .close {
+    color: #aaa;
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+
+  .close:hover {
+    color: #FFF5EE;
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>StoryCrafter</h1>
+      <p>Evaluated by <span style="color:#ff9e45;">Helyx Cogni</span></p>
+    </header>
+
+    <div class="input-grid">
+      <input type="text" id="adjective" placeholder="Adjective">
+      <input type="text" id="preposition" placeholder="Preposition">
+      <input type="text" id="verb" placeholder="Verb">
+      <input type="text" id="noun" placeholder="Noun">
+    </div>
+
+    <textarea id="story" placeholder="Write your story here..."></textarea>
+
+    <button class="evaluate-btn" id="evaluateBtn">Evaluate Story</button>
+
+    <button id="aboutBtn">About this Project</button>
+
+    <div class="result" id="resultBox"></div>
+
+
+
+    <footer>
+      #MadeWith<span>Helyx</span> | Powered by Helyx Labs
+    </footer>
+
+    <div id="aboutModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>About This Project</h2>
+      <p>
+        This isn’t just an evaluator; it’s a story of effort, imagination, and guidance.  
+        Helyx Labs exists to help ideas come to life, and this small project is one proof of that vision.
+      </p>
+      <p>
+        Behind every line of code is dedication, curiosity, and the intent to empower creators.  
+        This tool encourages creativity, supports learning, and celebrates the journey of building something meaningful.
+      </p>
+      <p>
+        <strong>#MadeWithHelyx</strong> — where ideas meet action, and imagination becomes reality.
+      </p>
+    </div>
+  </div>
+  </div>
+
+  <script>
+    const evaluateBtn = document.getElementById('evaluateBtn');
+    const resultBox = document.getElementById('resultBox');
+
+    evaluateBtn.addEventListener('click', () => {
+      const adj = document.getElementById('adjective').value.trim();
+      const prep = document.getElementById('preposition').value.trim();
+      const verb = document.getElementById('verb').value.trim();
+      const noun = document.getElementById('noun').value.trim();
+      const prov = document.getElementById('proverb').value.trim();
+      const story = document.getElementById('story').value.trim();
+
+      if (!adj || !prep || !verb || !noun || !prov || !story) {
+        alert("Please fill in all inputs before evaluating!");
+        return;
+      }
+
+      resultBox.style.display = "block";
+      resultBox.textContent = "Evaluating your story...";
+      resultBox.style.color = "#fac898";
+
+      setTimeout(() => {
+        const score = Math.floor(Math.random() * 41) + 60; // mock 60–100
+        resultBox.textContent = `✨ Your story scored ${score}/100 — beautifully crafted!`;
+        resultBox.style.color = "#ffb366";
+      }, 1500);
+    });
+
+    // Modal functionality
+  const modal = document.getElementById("aboutModal");
+  const aboutBtn = document.getElementById("aboutBtn");
+  const closeModal = document.getElementsByClassName("close")[0];
+
+  aboutBtn.onclick = () => modal.style.display = "block";
+  closeModal.onclick = () => modal.style.display = "none";
+  window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; };
+  </script>
+</body>
+</html>
