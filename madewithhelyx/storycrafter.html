@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StoryCrafter | Helyx Cogni</title>
+  <title>StoryCrafter | #MadeWithHelyx</title>
   <style>
     body {
       font-family: "Poppins", sans-serif;
@@ -191,10 +191,10 @@
     </header>
 
     <div class="input-grid">
-      <input type="text" id="adjective" placeholder="Adjective">
-      <input type="text" id="preposition" placeholder="Preposition">
-      <input type="text" id="verb" placeholder="Verb">
-      <input type="text" id="noun" placeholder="Noun">
+      <input type="text" id="character" placeholder="Character">
+      <input type="text" id="setting" placeholder="Setting">
+      <input type="text" id="action" placeholder="Action">
+      <input type="text" id="genre" placeholder="Genre">
     </div>
 
     <textarea id="story" placeholder="Write your story here..."></textarea>
@@ -230,42 +230,118 @@
   </div>
   </div>
 
-  <script>
-    const evaluateBtn = document.getElementById('evaluateBtn');
-    const resultBox = document.getElementById('resultBox');
+<script type="module">
+  import { GoogleGenAI } from 'https://esm.run/@google/genai@latest';
 
-    evaluateBtn.addEventListener('click', () => {
-      const adj = document.getElementById('adjective').value.trim();
-      const prep = document.getElementById('preposition').value.trim();
-      const verb = document.getElementById('verb').value.trim();
-      const noun = document.getElementById('noun').value.trim();
-      const prov = document.getElementById('proverb').value.trim();
-      const story = document.getElementById('story').value.trim();
+  const GEMINI_API_KEY = "AIzaSyDn8pkTobADYEFYq0lbYrwo00LF_hayU8M";
+  const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 
-      if (!adj || !prep || !verb || !noun || !prov || !story) {
-        alert("Please fill in all inputs before evaluating!");
-        return;
-      }
+  const evaluateBtn = document.getElementById('evaluateBtn');
+  const aboutBtn = document.getElementById('aboutBtn');
 
-      resultBox.style.display = "block";
-      resultBox.textContent = "Evaluating your story...";
-      resultBox.style.color = "#fac898";
+  // Modals
+  const aboutModal = document.getElementById("aboutModal");
 
-      setTimeout(() => {
-        const score = Math.floor(Math.random() * 41) + 60; // mock 60–100
-        resultBox.textContent = `✨ Your story scored ${score}/100 — beautifully crafted!`;
-        resultBox.style.color = "#ffb366";
-      }, 1500);
-    });
+  const resultModal = document.createElement("div");
+  resultModal.className = "modal";
+  resultModal.innerHTML = `
+    <div class="modal-content" id="resultContent">
+      <span class="close" id="closeResultModal">&times;</span>
+      <h2>Evaluation Result</h2>
+      <div id="modalResultBox" style="color:#FAC898; line-height:1.5;"></div>
+    </div>
+  `;
+  document.body.appendChild(resultModal);
 
-    // Modal functionality
-  const modal = document.getElementById("aboutModal");
-  const aboutBtn = document.getElementById("aboutBtn");
-  const closeModal = document.getElementsByClassName("close")[0];
+  // Show About Modal
+  aboutBtn.onclick = () => aboutModal.style.display = "block";
 
-  aboutBtn.onclick = () => modal.style.display = "block";
-  closeModal.onclick = () => modal.style.display = "none";
-  window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; };
-  </script>
+  // Close About Modal
+  document.getElementsByClassName("close")[0].onclick = () => aboutModal.style.display = "none";
+
+  // Close on outside click
+  window.onclick = (e) => {
+    if (e.target == aboutModal) aboutModal.style.display = "none";
+    if (e.target == resultModal) resultModal.style.display = "none";
+  };
+
+  evaluateBtn.addEventListener('click', async () => {
+    const char = document.getElementById('character').value.trim();
+    const set = document.getElementById('setting').value.trim();
+    const act = document.getElementById('action').value.trim();
+    const genre = document.getElementById('genre').value.trim();
+    const story = document.getElementById('story').value.trim();
+
+    if (!char || !set || !act || !genre || !story) {
+      alert("Please fill in all inputs before evaluating!");
+      return;
+    }
+
+    const prompt = `
+You are an impartial story evaluator for StoryCrafter.
+Evaluate the following story using the provided values:
+- Character: ${char}
+- Setting: ${set}
+- Action: ${act}
+- Genre: ${genre}
+
+STORY:
+"""${story.replace(/"/g, '\\"')}"""
+
+Rate this story from 0-10 on these metrics:
+1. Creativity
+2. Clarity
+3. Depth
+4. Use of the given words / Accuracy
+5. Bonus (style/emotion/twist)
+
+Return ONLY valid JSON with no code blocks, no backticks, no explanations. Strictly this format:
+{
+  "creativity": <number>,
+  "clarity": <number>,
+  "depth": <number>,
+  "accuracy": <number>,
+  "bonus": <number>,
+  "feedback": "<one short helpful sentence>"
+}
+    `;
+
+    const resultBox = document.getElementById('modalResultBox');
+
+    try {
+      const response = await ai.models.generateContent({
+        model: "gemini-2.5-flash-lite",
+        contents: prompt
+      });
+
+      let output = typeof response.text === "function" ? await response.text() : response.text;
+      output = output.replace(/```json|```/g, "").trim(); // strip any code fencing
+
+      let result = JSON.parse(output);
+
+      resultBox.innerHTML = `
+        <p><strong>Creativity:</strong> ${result.creativity}/10</p>
+        <p><strong>Clarity:</strong> ${result.clarity}/10</p>
+        <p><strong>Depth:</strong> ${result.depth}/10</p>
+        <p><strong>Accuracy:</strong> ${result.accuracy}/10</p>
+        <p><strong>Bonus:</strong> ${result.bonus}/10</p>
+        <p><em>✨ ${result.feedback}</em></p>
+      `;
+
+      // Show Result Modal
+      resultModal.style.display = "block";
+
+    } catch (err) {
+      console.error(err);
+      resultBox.innerHTML = `<span style="color: red;">Error: ${err.message}</span>`;
+      resultModal.style.display = "block";
+    }
+  });
+
+  // Close Result Modal
+  document.getElementById("closeResultModal").onclick = () => resultModal.style.display = "none";
+</script>
+
+
 </body>
 </html>
