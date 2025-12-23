@@ -1,0 +1,8 @@
+{
+  "product": "Spectra",
+  "version": "1.0.0",
+  "installer": {
+    "url": "https://github.com/Helyx-Labs/helyx-core/releases/download/v0.2.2/HelyxLabsSetup.exe",
+    "silentArgs": ["/S"]
+  }
+}
