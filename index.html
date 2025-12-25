@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Helyx Labs — Engineering the Future</title>
+    <!-- Meta -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tab Header -->
+    <title>Helyx Labs • Engineering the Future</title>
+    <link rel="icon" type="image/x-icon" href="logo.png" />
 
-    <!-- Stylesheet -->
+    <!-- External Stylesheets -->
     <link rel="stylesheet" href="styles.css" />
 
+    <!-- External Scripts -->
+    <script src="script.js" defer></script>
+
+    <!-- Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 </head>
 <body>
 
@@ -20,13 +28,13 @@
     <nav>
       <ul>
         <li><a href="mission/">Mission</a></li>
-        <li><a href="/team.html">Team</a></li>
-        <li><a href="/products.html">Products</a></li>
-        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="team/">Team</a></li>
+        <li><a href="products/">Products</a></li>
+        <li><a href="contact/">Contact</a></li>
       </ul>
     </nav>
     <div class="nav-actions">
-      <a href="/register.html">Register</a>
+      <a href="spectra/">Explore Spectra</a>
     </div>
   </div>
 </header>
@@ -42,8 +50,8 @@
         operating environments.
       </p>
       <div class="hero-buttons">
-        <a href="/products.html" class="btn-primary">Explore Projects</a>
-        <a href="/mission.html" class="btn-secondary">Our Vision</a>
+        <a href="products/" class="btn-primary">Explore Projects</a>
+        <a href="mission/" class="btn-secondary">Our Vision</a>
       </div>
     </div>
     <div class="hero-image">Visual / Lab / Product Imagery</div>
@@ -75,36 +83,38 @@
       <div class="card">
         <span class="product-tag">Deprecated</span>
         <h3>Helyx Labs App</h3>
-        <p>Our first proof-of-concept showcasing rapid development and AI-driven workflows.</p>
+        <p>Our first proof-of-concept showcasing rapid development and AI-driven workflows, now rebranded as <strong>Helyx Origin</strong>, from where it all originated.</p>
+        <br />
+        <a href="origin/" class="btn-secondary">Explore Origin</a>
       </div>
       <div class="card">
         <span class="product-tag">In Development</span>
         <h3>Spectra Browser</h3>
         <p>A next-generation browser focused on performance, control, and experimentation.</p>
         <br />
-        <a href="https://github.com/Helyx-Labs/spectra/releases/download/1.0.0/SpectraSetup1.0.0.exe" class="btn-secondary">Download Preview*</a>
+        <a href="spectra/" class="btn-secondary">Explore Spectra</a>
       </div>
       <div class="card">
         <span class="product-tag">Upcoming</span>
         <h3>NovaOS</h3>
         <p>A modular operating system designed for power users, research, and future AI systems.</p>
+        <br />
+        <a href="nova/" class="btn-secondary">Explore Nova</a>
       </div>
     </div>
   </section>
 
   <!-- TEAM -->
-  <!-- <section id="team">
+  <section id="team">
     <h2 class="section-title">The Helyx Labs Team</h2>
     <p class="section-sub">
-      A small, focused group driven by curiosity, engineering discipline, and
-      long-term thinking.
+      Right now, consists just of the founder—but we're growing! Stay tuned.
     </p>
     <div class="grid">
-      <div class="card">Team Member / Founder</div>
-      <div class="card">Research & Engineering</div>
-      <div class="card">Design & Systems</div>
+      <div class="card" style="width: fit-content;"><b>Founder & Lead Developer:</b> Hem Zope</div>
     </div>
-  </section> -->
+  </section>
+
 
   <!-- CONTACT -->
   <section id="contact">
@@ -129,9 +139,9 @@
     </div>
     <div>
       <h4>Explore</h4>
-      <a href="#products">Products</a>
-      <a href="#team">Team</a>
-      <a href="#mission">Mission</a>
+      <a href="products/">Products</a>
+      <a href="team/">Team</a>
+      <a href="mission/">Mission</a>
     </div>
     <div>
       <h4>Links</h4>
@@ -140,9 +150,6 @@
       <a href="https://www.youtube.com/@HelyxLabs" target="_blank">YouTube</a>
       <a href="https://x.com/HelyxLabs" target="_blank">X / Twitter</a>
     </div>
-  </div>
-  <div class="note copyright">
-        *NOTE: Spectra is a preview build and does not collect or transmit any user data.
   </div>
   <div class="copyright">
     &copy; <span id="y"></span> Helyx Labs. All rights reserved.
