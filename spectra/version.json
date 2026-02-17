@@ -1,8 +1,8 @@
 {
   "product": "Spectra",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "installer": {
-    "url": "https://github.com/Helyx-Labs/spectra/releases/download/1.0.0/SpectraSetup1.0.0.exe",
-    "silentArgs": ["/S"]
+    "url": "https://github.com/Helyx-Labs/spectra/releases/download/1.1.0/Spectra.Setup.1.1.0.exe",
+    "silentArgs": []
   }
 }
