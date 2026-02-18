@@ -43,12 +43,8 @@
   <!-- HERO -->
   <section class="hero">
     <div>
-      <h1>Engineering the <span>Next Frontier</span></h1>
-      <p>
-        Helyx Labs is a research-driven technology studio focused on building
-        future-first systems — from experimental software to full-scale
-        operating environments.
-      </p>
+      <h1 id="hero-title"></h1>
+      <p id="hero-subtitle"></p>
       <div class="hero-buttons">
         <a href="products" class="btn-primary">Explore Projects</a>
         <a href="mission" class="btn-secondary">Our Vision</a>
@@ -166,5 +162,25 @@
 <script>
     document.getElementById('y').textContent = new Date().getFullYear();
 </script>
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
+
+const supabase = createClient(
+  "https://fhnqoxviinkormcgikhy.supabase.co",
+  "sb_publishable__UR8-57E5ItsS87rnBhXIg___AH8ECy"
+)
+
+const { data } = await supabase
+  .from("content")
+  .select("*")
+  .eq("page", "home")
+
+const map = {}
+data.forEach(row => map[row.section] = row.content)
+
+document.getElementById("hero-title").innerHTML = map['hero.title'] || ""
+document.getElementById("hero-subtitle").innerHTML = map['hero.subtitle'] || ""
+</script>
+
 </body>
 </html>
