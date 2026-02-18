@@ -55,7 +55,7 @@ async function init() {
   document.getElementById("save").onclick = async () => {
     document.getElementById("status").innerText = "Saving..."
     for (let section of Object.keys(map)) {
-      const content = document.getElementById(section).content
+      const content = document.getElementById(section).value
       await supabase.from("content").update({ content }).eq("id", map[section].id)
     }
     document.getElementById("status").innerText = "All changes saved!"
