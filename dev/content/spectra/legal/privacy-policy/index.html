@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Privacy Policy Editor</title>
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+  <h2>Loading editor...</h2>
+
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
+
+const supabase = createClient(
+  "https://fhnqoxviinkormcgikhy.supabase.co",
+  "sb_publishable__UR8-57E5ItsS87rnBhXIg___AH8ECy",
+  { auth: { detectSessionInUrl: true } }
+)
+
+async function init() {
+  const { data: { session } } = await supabase.auth.getSession()
+
+  if (!session) return location.href = "/dev/"
+
+  const { data, error } = await supabase
+    .from("content")
+    .select("*")
+    .eq("page", "spectra-privacy-policy")
+
+  if (!data || error) {
+    document.body.innerHTML = "<h2>No Privacy Policy Content Found</h2>"
+    return
+  }
+
+  const map = {}
+  data.forEach(row => map[row.section] = row)
+
+  // Find latest update timestamp
+  const latestUpdate = data
+    .map(r => new Date(r.updated_at))
+    .sort((a, b) => b - a)[0]
+
+  const formattedTime = latestUpdate.toLocaleString("en-IN", {
+    dateStyle: "full",
+    timeStyle: "short"
+  })
+
+  const editorHTML = Object.keys(map).map(section => {
+    return `
+      <label>${section}</label><br>
+      <textarea id="${section}" rows="3">${map[section].content || ""}</textarea><br><br>
+    `
+  }).join("")
+
+  document.body.innerHTML = `
+    <h2>Privacy Policy Editor</h2>
+    <p>Logged in as: ${session.user.email}</p>
+    <p><strong>Last Updated:</strong> ${formattedTime}</p>
+    <hr><br>
+    ${editorHTML}
+    <button id="save">Save All</button>
+    <button id="logout">Logout</button>
+    <p id="status"></p>
+  `
+
+  document.getElementById("logout").onclick = async () => {
+    await supabase.auth.signOut()
+    location.href = "/dev/"
+  }
+
+  document.getElementById("save").onclick = async () => {
+    const status = document.getElementById("status")
+    status.innerText = "Saving..."
+
+    for (let section of Object.keys(map)) {
+      const content = document.getElementById(section).value
+
+      await supabase
+        .from("content")
+        .update({ content })
+        .eq("id", map[section].id)
+    }
+
+    status.innerText = "All changes saved!"
+    location.reload() // refreshes timestamp display
+  }
+}
+
+init()
+</script>
+
+</body>
+</html>

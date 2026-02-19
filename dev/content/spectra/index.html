@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Home Editor</title>
+  <title>Spectra Editor</title>
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
@@ -20,11 +20,11 @@ async function init() {
   const { data: { session } } = await supabase.auth.getSession()
   if (!session) return location.href = "/dev/"
 
-  // Fetch all home content
+  // Fetch all spectra content
   const { data } = await supabase
     .from("content")
     .select("*")
-    .eq("page", "home")
+    .eq("page", "spectra")
 
   // Map content by section
   const map = {}
@@ -39,7 +39,7 @@ async function init() {
   }).join("")
 
   document.body.innerHTML = `
-    <h2>Home Editor</h2>
+    <h2>Spectra Webpage Editor</h2>
     <p>Logged in as: ${session.user.email}</p>
     ${editorHTML}
     <button id="save">Save All</button>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Spectra Versions Manager</title>
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+  <h2>Loading versions manager...</h2>
+
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
+
+const supabase = createClient(
+  "https://fhnqoxviinkormcgikhy.supabase.co",
+  "sb_publishable__UR8-57E5ItsS87rnBhXIg___AH8ECy",
+  { auth: { detectSessionInUrl: true } }
+)
+
+async function init() {
+  console.log("Init running")
+
+  const { data, error } = await supabase.auth.getSession()
+
+  if (error) {
+    console.error("Session error:", error)
+    document.body.innerHTML = "<h2>Session error</h2>"
+    return
+  }
+
+  const session = data.session
+
+  if (!session) {
+    console.log("No session, redirecting")
+    location.href = "/dev/"
+    return
+  }
+
+  console.log("Session OK:", session.user.email)
+
+  loadVersions(session)
+}
+
+
+async function loadVersions(session) {
+  const { data, error } = await supabase
+    .from("spectra_versions")
+    .select("*")
+    .order("release_date", { ascending: false })
+
+  if (error) {
+    console.error("Supabase error:", error)
+    document.body.innerHTML = "<h2>Database query failed</h2>"
+    return
+  }
+
+  if (!data) {
+    console.error("No data returned")
+    document.body.innerHTML = "<h2>No data returned</h2>"
+    return
+  }
+
+  function esc(str) {
+    return (str || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;");
+  }
+
+  const rowsHTML = data.map(v => `
+    <div style="border:1px solid rgba(255,255,255,0.1); padding:12px; margin-bottom:10px;">
+      <b>${esc(v.version)}</b> ${v.is_latest ? "LATEST" : ""}
+      <br><br>
+
+      <label>Short Description</label><br>
+      <textarea id="short-${v.id}">${esc(v.short_description)}</textarea><br><br>
+
+      <label>Long Description</label><br>
+      <textarea id="long-${v.id}" rows="3">${esc(v.long_description)}</textarea><br><br>
+
+      <label>Download URL</label><br>
+      <textarea id="url-${v.id}">${esc(v.download_url)}</textarea><br><br>
+
+      <label>Release Date</label><br>
+      <textarea id="date-${v.id}">${esc(v.release_date)}</textarea><br><br>
+
+      <button onclick="window.updateVersion('${v.id}')">Save</button>
+      <button onclick="window.makeLatest('${v.id}')">Make Latest</button>
+      <button onclick="window.deleteVersion('${v.id}')">Delete</button>
+    </div>
+  `).join("")
+
+
+  document.body.innerHTML = `
+    <h2>Spectra Versions Manager</h2>
+    <p>Logged in as: ${session.user.email}</p>
+
+    <h3>Add New Version</h3>
+    <textarea id="new-version" placeholder="Version (e.g. 2.0.0)" /></textarea><br><br>
+    <textarea id="new-short" placeholder="Short description" /></textarea><br><br>
+    <textarea id="new-long" placeholder="Long description"></textarea><br><br>
+    <textarea id="new-url" placeholder="Download URL" /></textarea><br><br>
+    <button id="add">Add Version</button>
+
+    <hr><br>
+
+    ${rowsHTML}
+
+    <br>
+    <button id="logout">Logout</button>
+    <p id="status"></p>
+  `
+
+  document.getElementById("logout").onclick = async () => {
+    await supabase.auth.signOut()
+    location.href = "/dev/"
+  }
+
+  document.getElementById("add").onclick = addVersion
+}
+
+window.updateVersion = async (id) => {
+  const status = document.getElementById("status")
+  status.innerText = "Saving..."
+
+  try {
+    const { error } = await supabase
+      .from("spectra_versions")
+      .update({
+        short_description: document.getElementById(`short-${id}`).value,
+        long_description: document.getElementById(`long-${id}`).value,
+        download_url: document.getElementById(`url-${id}`).value,
+        release_date: document.getElementById(`date-${id}`).value
+      })
+      .eq("id", id)
+
+    if (error) throw error
+
+    status.innerText = "Saved!"
+  } catch (err) {
+    console.error(err)
+    status.innerText = "Save failed"
+  }
+}
+
+
+window.makeLatest = async (id) => {
+  const status = document.getElementById("status")
+  status.innerText = "Updating latest..."
+
+  try {
+    // unset previous latest
+    const { error: unsetError } = await supabase
+      .from("spectra_versions")
+      .update({ is_latest: false })
+      .eq("is_latest", true)
+
+    if (unsetError) throw unsetError
+
+    // set new latest
+    const { error: setError } = await supabase
+      .from("spectra_versions")
+      .update({ is_latest: true })
+      .eq("id", id)
+
+    if (setError) throw setError
+
+    location.reload()
+  } catch (err) {
+    console.error(err)
+    status.innerText = "Failed to update latest"
+  }
+}
+
+
+window.deleteVersion = async (id) => {
+  if (!confirm("Delete this version?")) return
+
+  await supabase.from("spectra_versions").delete().eq("id", id)
+
+  location.reload()
+}
+
+async function addVersion() {
+  const version = document.getElementById("new-version").value
+  const short = document.getElementById("new-short").value
+  const long = document.getElementById("new-long").value
+  const url = document.getElementById("new-url").value
+
+  if (!version) return alert("Version required")
+
+  document.getElementById("status").innerText = "Adding..."
+
+  await supabase.from("spectra_versions").insert({
+    version,
+    short_description: short,
+    long_description: long,
+    download_url: url,
+    is_latest: false
+  })
+
+  location.reload()
+}
+
+init()
+</script>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 80px 20px 120px;
+    }
+
+    .page-title {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .page-title h1 {
+      font-size: 2.6rem;
+      margin-bottom: 10px;
+    }
+
+    .page-title h1 span { color: var(--coral); }
+
+    .page-title p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* ===== TIMELINE ===== */
+
+    .timeline {
+      position: relative;
+      margin-left: 20px;
+      padding-left: 40px;
+      border-left: 1px solid var(--border-soft);
+    }
+
+    .entry {
+      position: relative;
+      margin-bottom: 60px;
+    }
+
+    .entry::before {
+      content: "";
+      position: absolute;
+      left: -49px;
+      top: 4px;
+      width: 10px;
+      height: 10px;
+      background: var(--coral);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(255,107,74,0.15);
+    }
+
+    .date {
+      font-size: 0.85rem;
+      color: var(--coral);
+      margin-bottom: 6px;
+      letter-spacing: 0.4px;
+    }
+
+    .entry h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+
+    .entry p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }

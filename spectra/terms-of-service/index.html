@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Meta -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Tab Header -->
+    <title>Terms of Service • Spectra</title>
+    <link rel="icon" type="image/x-icon" href="logo.png" />
+
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="../../styles.css" />
+
+    <!-- External Scripts -->
+
+    <!-- Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">Helyx<span>Labs</span> | Spectra<span>.</span></div>
+
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/docs">Docs</a></li>
+        <li><a href="/spectra/privacy">Privacy</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="/download">Download</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <h1 id="title" class="section-title">Terms of Service</h1>
+  <p id="updated" class="section-sub">Loading...</p>
+
+<div class="card">
+  <h3>Agreement to Terms</h3>
+  <p id="agreement"></p>
+</div>
+
+<div class="card">
+  <h3>Use of Service</h3>
+  <p id="use_of_service"></p>
+</div>
+
+<div class="card">
+  <h3>User Responsibilities</h3>
+  <p id="responsibilities"></p>
+</div>
+
+<div class="card">
+  <h3>Prohibited Activities</h3>
+  <p id="prohibited"></p>
+</div>
+
+<div class="card">
+  <h3>Intellectual Property</h3>
+  <p id="intellectual_property"></p>
+</div>
+
+<div class="card">
+  <h3>Disclaimers</h3>
+  <p id="disclaimers"></p>
+</div>
+
+<div class="card">
+  <h3>Limitation of Liability</h3>
+  <p id="liability"></p>
+</div>
+
+<div class="card">
+  <h3>Termination</h3>
+  <p id="termination"></p>
+</div>
+
+<div class="card">
+  <h3>Changes to Terms</h3>
+  <p id="changes"></p>
+</div>
+
+<div class="card">
+  <h3>Contact</h3>
+  <p id="contact"></p>
+</div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h4>Legal</h4>
+      <a href="/spectra/privacy">Privacy Policy</a>
+      <a href="/spectra/terms">Terms of Service</a>
+    </div>
+  </div>
+
+  <div class="copyright">
+    &copy; Spectra. All rights reserved.
+  </div>
+</footer>
+
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
+
+const supabase = createClient(
+  "https://fhnqoxviinkormcgikhy.supabase.co",
+  "sb_publishable__UR8-57E5ItsS87rnBhXIg___AH8ECy"
+)
+
+async function loadPolicy() {
+  const { data, error } = await supabase
+    .from("content")
+    .select("*")
+    .eq("page", "spectra-terms-of-service")
+
+  if (error || !data) {
+    document.getElementById("updated").textContent =
+      "Policy unavailable"
+    return
+  }
+
+  const map = {}
+  data.forEach(row => map[row.section] = row.content)
+
+  // Title
+  if (map.title) {
+    document.getElementById("title").innerHTML = map.title
+  }
+
+  // Updated time
+  const latestUpdate = data
+    .map(r => r.updated_at ? new Date(r.updated_at) : new Date())
+    .sort((a, b) => b - a)[0]
+
+  document.getElementById("updated").textContent =
+    "Last updated: " +
+    latestUpdate.toLocaleString("en-IN", {
+      dateStyle: "full",
+      timeStyle: "short"
+    })
+
+const sections = [
+  "agreement",
+  "use_of_service",
+  "responsibilities",
+  "prohibited",
+  "intellectual_property",
+  "disclaimers",
+  "liability",
+  "termination",
+  "changes",
+  "contact"
+]
+
+
+  sections.forEach(id => {
+    if (map[id]) {
+      document.getElementById(id).innerHTML = map[id]
+    }
+  })
+}
+
+loadPolicy()
+</script>
+
+</body>
+</html>

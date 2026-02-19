@@ -1,186 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta -->
+    <!--META-->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Tab Header -->
+    <!--TAB BAR-->
     <title>Helyx Labs • Engineering the Future</title>
     <link rel="icon" type="image/x-icon" href="logo.png" />
 
-    <!-- External Stylesheets -->
+    <!--EXTERNAL CODE-->
     <link rel="stylesheet" href="styles.css" />
-
-    <!-- External Scripts -->
     <script src="script.js" defer></script>
 
-    <!-- Font: Inter -->
+    <!--EXTERNAL FONTS-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-<header>
-  <div class="nav">
-    <div class="logo">Helyx<span>Labs</span></div>
-    <nav>
-      <ul>
-        <li><a href="mission">Mission</a></li>
-        <li><a href="team">Team</a></li>
-        <li><a href="products">Products</a></li>
-        <li><a href="contact">Contact</a></li>
-      </ul>
-    </nav>
-    <div class="nav-actions">
-      <a href="spectra">Explore Spectra</a>
-    </div>
-  </div>
-</header>
+    <!--HEADER-->
+    <header>
+        <div class="nav">
+            <div class="logo">Helyx<span>Labs</span></div>
+            <nav>
+                <ul>
+                    <li><a href="mission">Mission</a></li>
+                    <li><a href="roadmap">Roadmap</a></li>
+                    <li><a href="spectra">Spectra</a></li>
+                    <li><a href="core">Helyx Core</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <a href="spectra">Explore Spectra</a>
+            </div>
+        </div>
+    </header>
 
-<main>
-  <!-- HERO -->
-  <section class="hero">
-    <div>
-      <h1 id="hero-title"></h1>
-      <p id="hero-subtitle"></p>
-      <div class="hero-buttons">
-        <a href="products" class="btn-primary">Explore Projects</a>
-        <a href="mission" class="btn-secondary">Our Vision</a>
-      </div>
-    </div>
-    <div class="hero-image">Visual / Lab / Product Imagery</div>
-  </section>
+    <!--MAIN CONTENT-->
+    <main>
+        <!-- HERO -->
+        <section class="hero">
+            <div>
+                <h1 id="hero-title"></h1>
+                <p id="hero-info"></p>
+                <div class="hero-buttons">
+                    <a href="#" id="hero-btn-1" class="btn-primary"></a>
+                    <a href="#" id="hero-btn-2" class="btn-secondary"></a>
+                </div>
+            </div>
+            <div class="hero-image">System • Interface • Platform</div>
+        </section>
 
-  <!-- MISSION -->
-  <section id="mission">
-    <h2 class="section-title">Mission & Dedication</h2>
-    <p class="section-sub">
-      Helyx Labs exists to explore bold ideas, test them rigorously, and ship
-      meaningful technology. We value discipline, curiosity, and proof over
-      hype.
-    </p>
-    <div class="grid">
-      <div class="card"><h3>Research-First</h3><p>Every product begins as a question, validated through experimentation.</p></div>
-      <div class="card"><h3>Proof of Concept</h3><p>We build early, break fast, and document everything.</p></div>
-      <div class="card"><h3>Future Ready</h3><p>Our work is designed to scale into long-term platforms.</p></div>
-    </div>
-  </section>
+        <!-- MISSION -->
+        <section id="mission">
+            <h2 class="section-title">Mission</h2>
+            <p class="section-sub" id="mission-intro"></p>
+            <div class="grid">
+                <div class="card">
+                    <h3 id="mission1-title"></h3><p id="mission1-info"></p>
+                </div>
+                <div class="card">
+                    <h3 id="mission2-title"></h3><p id="mission2-info"></p>
+                </div>
+                <div class="card">
+                    <h3 id="mission3-title"></h3><p id="mission3-info"></p>
+                </div>
+            </div>
+        </section>
 
-  <!-- PRODUCTS -->
-  <section id="products">
-    <h2 class="section-title">Products & Platforms</h2>
-    <p class="section-sub">
-      From deprecated experiments to active development pipelines — this is
-      our ecosystem.
-    </p>
-    <div class="grid">
-      <div class="card">
-        <span class="product-tag">Deprecated</span>
-        <h3>Helyx Labs App</h3>
-        <p>Our first proof-of-concept showcasing rapid development and AI-driven workflows, now rebranded as <strong>Helyx Core</strong>, from where it all originated.</p>
-        <br />
-        <a href="core" class="btn-secondary">Explore Helyx Core</a>
-      </div>
-      <div class="card">
-        <span class="product-tag">In Development</span>
-        <h3>Spectra Browser</h3>
-        <p>A next-generation browser focused on performance, control, and experimentation.</p>
-        <br />
-        <a href="spectra" class="btn-secondary">Explore Spectra</a>
-      </div>
-      <div class="card">
-        <span class="product-tag">Upcoming</span>
-        <h3>NovaOS</h3>
-        <p>A modular operating system designed for power users, research, and future AI systems.</p>
-        <br />
-        <a href="nova" class="btn-secondary">Explore Nova</a>
-      </div>
-    </div>
-  </section>
+        <!-- PLATFORMS -->
+        <section>
+            <h2 class="section-title">Platforms</h2>
+            <p class="section-sub" id="platforms-intro"></p>
 
-  <!-- TEAM -->
-  <section id="team">
-    <h2 class="section-title">The Helyx Labs Team</h2>
-    <p class="section-sub">
-      Right now, consists just of the founder—but we're growing! Stay tuned.
-    </p>
-    <div class="grid">
-      <div class="card" style="width: fit-content;"><b>Founder & Lead Developer:</b> Hem Zope</div>
-    </div>
-  </section>
+            <div class="grid">
+                <div class="card">
+                    <span class="product-tag" id="platform1-tag"></span>
+                    <h3 id="platform1-title"></h3><p id="platform1-info"></p>
+                    <br />
+                    <a href="#" class="btn-secondary" id="platform1-btn"></a>
+                </div>
 
+                <div class="card">
+                    <span class="product-tag" id="platform2-tag"></span>
+                        <h3 id="platform2-title"></h3><p id="platform2-info"></p>
+                        <br />
+                        <a href="./spectra/explore/" class="btn-secondary" id="platform2-btn"></a>
+                </div>
+            </div>
+        </section>
+    </main>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <h2 class="section-title">Get in Touch</h2>
-    <p class="section-sub">Collaborations, questions, or just curiosity — we’re listening.</p>
-    <form>
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Your Email" required />
-      <textarea rows="5" placeholder="Your Message"></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
-</main>
+    <!--FOOTER-->
+    <footer>
+        <div class="footer-grid">
 
-<footer>
-  <div class="footer-grid">
-    <div>
-      <h4>Helyx Labs</h4>
-      <p style="color: var(--text-muted); font-size: 0.9rem;">
-        Building systems that outlast trends.
-      </p>
-    </div>
-    <div>
-      <h4>About</h4>
-      <a href="mission">Mission</a>
-      <a href="philosophy">Philosophy</a>
-      <a href="roadmap">Roadmap</a>
-      <a href="https://github.com/Helyx-Labs" target="_blank">GitHub</a>
-    </div>
-    <div>
-      <h4>Explore</h4>
-      <a href="products">Products</a>
-      <a href="core">Helyx Core</a>
-      <a href="spectra">Spectra Browser</a>
-      <a href="nova">NovaOS</a>
-    </div>
-    <div>
-      <h4>Social</h4>
-      <a href="https://open.spotify.com/user/31fkz65tsmlmw4ydz3jnga2yuziy?si=1abfe31754124da6" target="_blank">Spotify</a>
-      <a href="https://www.youtube.com/@HelyxLabs" target="_blank">YouTube</a>
-      <a href="https://www.linkedin.com/in/helyx-labs-a16296380" target="_blank">LinkedIn</a>
-      <a href="https://x.com/HelyxLabs" target="_blank">X / Twitter</a>
-    </div>
-  </div>
-  <div class="copyright">
-        &copy; <span id="y"></span> Helyx Labs • All rights reserved
-    </div>
-</footer>
-<script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-</script>
-<script type="module">
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
+            <div>
+                <h4>Helyx Labs</h4>
+                <p id="footer-tagline" style="color: var(--text-muted); font-size: 0.9rem;"></p>
+            </div>
 
-const supabase = createClient(
-  "https://fhnqoxviinkormcgikhy.supabase.co",
-  "sb_publishable__UR8-57E5ItsS87rnBhXIg___AH8ECy"
-)
+            <div>
+                <h4>Platforms</h4>
+                <a href="core">Helyx Core</a>
+                <a href="spectra">Spectra Browser</a>
+                <a href="./spectra/versions/">Spectra Versions</a>
+            </div>
 
-const { data } = await supabase
-  .from("content")
-  .select("*")
-  .eq("page", "home")
+            <div>
+                <h4>Research</h4>
+                <a href="mission">Mission</a>
+                <a href="roadmap">Roadmap</a>
+                <a href="https://github.com/Helyx-Labs" target="_blank">GitHub</a>
+            </div>
 
-const map = {}
-data.forEach(row => map[row.section] = row.content)
+            <div>
+                <h4>External</h4>
+                <a href="https://www.youtube.com/@HelyxLabs" target="_blank">YouTube</a>
+                <a href="https://x.com/HelyxLabs" target="_blank">X / Twitter</a>
+                <a href="https://www.linkedin.com/in/helyx-labs-a16296380" target="_blank">LinkedIn</a>
+            </div>
 
-document.getElementById("hero-title").innerHTML = map['hero.title'] || ""
-document.getElementById("hero-subtitle").innerHTML = map['hero.subtitle'] || ""
-</script>
+        </div>
 
+        <div class="copyright">
+            &copy; <span id="y"></span> Helyx Labs • All rights reserved
+        </div>
+    
+    </footer>
 </body>
+
+<script type="module">
+
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
+
+    const supabase = createClient(
+        "https://fhnqoxviinkormcgikhy.supabase.co",
+        "sb_publishable__UR8-57E5ItsS87rnBhXIg___AH8ECy"
+    )
+
+    const { data } = await supabase
+        .from("content")
+        .select("*")
+        .eq("page", "home")
+
+    const map = {}
+    data.forEach(row => map[row.section] = row.content)
+
+    document.getElementById("hero-title").innerHTML = map['hero.title'] || ""
+    document.getElementById("hero-info").innerHTML = map['hero.info'] || ""
+    document.getElementById("hero-btn-1").innerHTML = map['hero.btn1.txt'] || ""
+    document.getElementById("hero-btn-1").href = map['hero.btn1.link'] || "#"
+    document.getElementById("hero-btn-2").innerHTML = map['hero.btn2.txt'] || ""
+    document.getElementById("hero-btn-2").href = map['hero.btn2.link'] || "#"
+
+    document.getElementById("mission-intro").innerHTML = map['mission.intro'] || ""
+    document.getElementById("mission1-title").innerHTML = map['mission1.title'] || ""
+    document.getElementById("mission1-info").innerHTML = map['mission1.info'] || ""
+    document.getElementById("mission2-title").innerHTML = map['mission2.title'] || ""
+    document.getElementById("mission2-info").innerHTML = map['mission2.info'] || ""
+    document.getElementById("mission3-title").innerHTML = map['mission3.title'] || ""
+    document.getElementById("mission3-info").innerHTML = map['mission3.info'] || ""
+
+    document.getElementById("platforms-intro").innerHTML = map['platforms.intro'] || ""
+    document.getElementById("platform1-tag").innerHTML = map['platform1.tag'] || ""
+    document.getElementById("platform1-title").innerHTML = map['platform1.title'] || ""
+    document.getElementById("platform1-info").innerHTML = map['platform1.info'] || ""
+    document.getElementById("platform1-btn").innerHTML = map['platform1.btn.txt'] || ""
+    document.getElementById("platform1-btn").href = map['platform1.btn.link'] || "#"
+    document.getElementById("platform2-tag").innerHTML = map['platform2.tag'] || ""
+    document.getElementById("platform2-title").innerHTML = map['platform2.title'] || ""
+    document.getElementById("platform2-info").innerHTML = map['platform2.info'] || ""
+    document.getElementById("platform2-btn").innerHTML = map['platform2.btn.txt'] || ""
+    document.getElementById("platform2-btn").href = map['platform2.btn.link'] || "#"
+
+    document.getElementById("footer-tagline").innerHTML = map['footer.tagline'] || ""
+
+    document.getElementById("y").innerHTML = new Date().getFullYear()
+</script>
+
 </html>

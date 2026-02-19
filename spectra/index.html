@@ -30,7 +30,7 @@
 
         <div class="nav">
 
-            <div class="logo">Helyx<span>Labs</span></div>
+            <div class="logo">Helyx<span>Labs</span> | Spectra<span>.</span></div>
 
             <nav>
                 <ul>
@@ -63,14 +63,15 @@
             </p>
 
             <div class="hero-buttons">
-                <a href="https://github.com/Helyx-Labs/spectra/releases/download/1.1.1/Spectra.Setup.1.1.1.exe" class="btn-primary">Download • Windows (10/11)*</a>
+                <a href="#" id="spectra-win-download" class="btn-primary"></a>
                 <a href="#" class="btn-secondary">Download • Android</a>
             </div>
 
             <p style="margin-top:16px; font-size:0.9rem; color:var(--text-muted);">
-                Latest release: <strong>Spectra v1.1.1</strong> • Windows Build
                 <br />
-                Additional versions available on the downloads page.
+                <span id="latest-release"></span>
+                <br /><br />
+                Windows version available now. &nbsp;|&nbsp; Mac, Linux, Android, and iOS versions coming soon. &nbsp;|&nbsp; <a href="./versions/" style="color: var(--text-muted); text-decoration: underline;">Explore all versions</a>
             </p>
         </div>
 
@@ -244,35 +245,63 @@
         </div>
     </section>
 
-    <footer>
-        <div class="footer-grid">
-            <div>
-                <h4>Helyx Labs</h4>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">
-                    Building systems that outlast trends.
-                </p>
-            </div>
-            <div>
-                <h4>Explore</h4>
-                <a href="..">Home</a>
-                <a href="../products">Products</a>
-                <a href="../team">Team</a>
-                <a href="../mission">Mission</a>
-            </div>
-            <div>
-                <h4>Links</h4>
-                <a href="https://github.com/Helyx-Labs" target="_blank">GitHub</a>
-                <a href="https://open.spotify.com/user/31fkz65tsmlmw4ydz3jnga2yuziy?si=1abfe31754124da6" target="_blank">Spotify</a>
-                <a href="https://www.youtube.com/@HelyxLabs" target="_blank">YouTube</a>
-                <a href="https://x.com/HelyxLabs" target="_blank">X / Twitter</a>
-            </div>
-        </div>
-        <div class="note copyright">
-            *NOTE: Spectra is a preview build and does not collect or transmit any user data.
-        </div>
-        <div class="copyright">
-            &copy; <span id="y"></span> Helyx Labs. All rights reserved.
-        </div>
-    </footer>
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h4>Helyx Labs</h4>
+      <p style="color: var(--text-muted); font-size: 0.9rem;">
+        Building systems that outlast trends.
+      </p>
+    </div>
+    <div>
+      <h4>About</h4>
+      <a href="mission">Mission</a>
+      <a href="philosophy">Philosophy</a>
+      <a href="roadmap">Roadmap</a>
+      <a href="https://github.com/Helyx-Labs" target="_blank">GitHub</a>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <a href="products">Products</a>
+      <a href="core">Helyx Core</a>
+      <a href="spectra">Spectra Browser</a>
+      <a href="nova">NovaOS</a>
+    </div>
+    <div>
+      <h4>Social</h4>
+      <a href="https://open.spotify.com/user/31fkz65tsmlmw4ydz3jnga2yuziy?si=1abfe31754124da6" target="_blank">Spotify</a>
+      <a href="https://www.youtube.com/@HelyxLabs" target="_blank">YouTube</a>
+      <a href="https://www.linkedin.com/in/helyx-labs-a16296380" target="_blank">LinkedIn</a>
+      <a href="https://x.com/HelyxLabs" target="_blank">X / Twitter</a>
+    </div>
+  </div>
+  <div class="copyright">
+        &copy; <span id="y"></span> Helyx Labs • All rights reserved
+    </div>
+</footer>
+<script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+    <script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
+
+const supabase = createClient(
+  "https://fhnqoxviinkormcgikhy.supabase.co",
+  "sb_publishable__UR8-57E5ItsS87rnBhXIg___AH8ECy"
+)
+
+const { data } = await supabase
+  .from("content")
+  .select("*")
+  .eq("page", "spectra")
+
+const map = {}
+data.forEach(row => map[row.section] = row.content)
+
+document.getElementById("spectra-win-download").href = map['link.installSpectra'] || "a"
+document.getElementById("spectra-win-download").innerHTML = map['link.winTitle'] || ""
+document.getElementById("latest-release").innerHTML = map['hero.version'] || ""
+</script>
+
 </body>
 </html>

@@ -242,6 +242,12 @@
       }
     }
 
+    .docs-btn {
+      color: var(--coral);
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
 /* ================= SCROLLBAR ================= */
 html {
   scrollbar-width: initial;

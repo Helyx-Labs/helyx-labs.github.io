@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Spectra • Versions</title>
+  <link rel="icon" type="image/x-icon" href="../../logo.png" />
+
+  <link rel="stylesheet" href="../../styles.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+
+        <div class="nav">
+
+            <div class="logo">Helyx<span>Labs</span> | Spectra<span>.</span></div>
+
+            <nav>
+                <ul>
+                    <li><a href="../..">Home</a></li>
+                    <li><a href="../mission">Mission</a></li>
+                    <li><a href="../team">Team</a></li>
+                    <li><a href="../products">Products</a></li>
+                    <li><a href="../contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="../explore/">Explore Details</a>
+            </div>
+
+        </div>
+
+    </header>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div>
+    <h1>Loading latest version...</h1>
+  </div>
+</section>
+
+<!-- OTHER VERSIONS -->
+<section>
+  <h2 class="section-title">Previous Releases</h2>
+  <p class="section-sub">Explore earlier Spectra builds and improvements.</p>
+
+  <div class="grid" id="versions-grid">
+    Loading versions...
+  </div>
+</section>
+
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
+
+const supabase = createClient(
+  "https://fhnqoxviinkormcgikhy.supabase.co",
+  "sb_publishable__UR8-57E5ItsS87rnBhXIg___AH8ECy"
+)
+
+const PREVIEW_LIMIT = 80   // intentionally small so effect is obvious
+
+function makePreview(text) {
+  if (!text) return ""
+  if (text.length <= PREVIEW_LIMIT) return text + " …"
+  return text.slice(0, PREVIEW_LIMIT) + "..."
+}
+
+async function init() {
+
+  /* ================= LATEST ================= */
+
+  const { data: latest } = await supabase
+    .from("spectra_versions")
+    .select("*")
+    .eq("is_latest", true)
+    .single()
+
+  if (latest) {
+    document.getElementById("hero").innerHTML = `
+      <div>
+        <h1>Spectra <span>${latest.version}</span></h1>
+        <p><strong>${latest.short_description || ""}</strong></p>
+        <p>${latest.long_description || ""}</p>
+
+        <div class="hero-buttons">
+          <a class="btn-primary" href="${latest.download_url}" target="_blank">
+            Download
+          </a>
+        </div>
+      </div>
+      <div class="hero-image">Latest Stable Release</div>
+    `
+  }
+
+  /* ================= PREVIOUS ================= */
+
+  const { data: versions } = await supabase
+    .from("spectra_versions")
+    .select("*")
+    .eq("is_latest", false)
+    .order("release_date", { ascending: false })
+
+  const cardsHTML = versions.map(v => {
+    const full = v.long_description || ""
+    const preview = makePreview(full)
+
+    return `
+      <div class="card">
+        <span class="logo"><span>${v.version}</span></span>
+        <p style="font-size: medium; color: #ccc;">${v.short_description || "Spectra Release"}</p>
+        <br />
+        <p id="desc-${v.id}"
+           data-full="${encodeURIComponent(full)}"
+           data-preview="${encodeURIComponent(preview)}"
+           data-expanded="false">
+          ${preview}
+        </p>
+
+        <br>
+
+        <a href="#" class="docs-btn"
+           onclick="window.toggleDesc('${v.id}', this); return false;">
+          Read More
+        </a>
+
+        <br><br>
+
+        <a class="btn-secondary" href="${v.download_url}" target="_blank">
+          Download
+        </a>
+      </div>
+    `
+  }).join("")
+
+  document.getElementById("versions-grid").innerHTML = cardsHTML
+
+  window.toggleDesc = (id, btn) => {
+    const el = document.getElementById(`desc-${id}`)
+
+    const full = decodeURIComponent(el.dataset.full)
+    const preview = decodeURIComponent(el.dataset.preview)
+
+    if (el.dataset.expanded === "true") {
+      el.textContent = preview
+      el.dataset.expanded = "false"
+      btn.textContent = "Read More"
+    } else {
+      el.textContent = full
+      el.dataset.expanded = "true"
+      btn.textContent = "Show Less"
+    }
+  }
+}
+
+init()
+</script>
+
+
+</body>
+</html>
