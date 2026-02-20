@@ -1,184 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--META-->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!--TAB BAR-->
-    <title>Helyx Labs • Engineering the Future</title>
-    <link rel="icon" type="image/x-icon" href="logo.png" />
+    <title>Helyx Labs • Engineering the Next Frontier</title>
+    <link rel="icon" href="./assets/logo.ico" type="image/x-icon" sizes="any">
+    <link rel="icon" href="./assets/logo-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="./assets/logo-16x16.png" type="image/png" sizes="16x16">
+    <link rel="canonical" href="https://helyx-labs.github.io/">
 
-    <!--EXTERNAL CODE-->
     <link rel="stylesheet" href="styles.css" />
-    <script src="script.js" defer></script>
 
-    <!--EXTERNAL FONTS-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- SEO -->
+    <meta name="description" content="Helyx Labs builds human-centric AI systems and productivity tools designed to reduce friction in digital work. Explore Spectra, an AI-integrated browser focused on speed, focus, and smarter workflows." />
+    <meta name="keywords" content="Helyx Labs, Spectra Browser, AI browser, modern web browser, AI productivity tools, human-centric AI, workflow automation, smart browser, AI-integrated software, productivity systems" />
+    <meta name="author" content="Helyx Labs" />
+    <meta name="robots" content="index, follow" />
+
+    <meta property="og:title" content="Helyx Labs • Engineering the Next Frontier" />
+    <meta property="og:description" content="Human-centric AI systems and productivity tools designed to reduce friction in digital work." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://helyx-labs.github.io/" />
+    <meta property="og:image" content="https://helyx-labs.github.io/assets/logo.png" />
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+
+    {
+      "@type": "Organization",
+      "@id": "https://helyx-labs.github.io/#organization",
+      "name": "Helyx Labs",
+      "url": "https://helyx-labs.github.io/",
+      "logo": "https://helyx-labs.github.io/assets/logo.png",
+      "description": "Helyx Labs builds AI-powered systems focused on reducing friction in digital work through language models, automation, and human-centric software.",
+      "founder": {
+        "@type": "Person",
+        "name": "Hem Zope"
+      }
+    },
+
+    {
+      "@type": "WebSite",
+      "@id": "https://helyx-labs.github.io/#website",
+      "url": "https://helyx-labs.github.io/",
+      "name": "Helyx Labs",
+      "publisher": {
+        "@id": "https://helyx-labs.github.io/#organization"
+      }
+    },
+
+    {
+      "@type": "Product",
+      "@id": "https://helyx-labs.github.io/spectra/#product",
+      "name": "Spectra",
+      "brand": {
+        "@id": "https://helyx-labs.github.io/#organization"
+      },
+      "url": "https://helyx-labs.github.io/spectra/",
+      "description": "Spectra is an AI-integrated browser designed to make web workflows faster, simpler, and more human through intelligent assistance and automation."
+    }
+
+  ]
+}
+</script>
 </head>
 <body>
-
-    <!--HEADER-->
+    <!-- HEADER -->
     <header>
         <div class="nav">
-            <div class="logo">Helyx<span>Labs</span></div>
+            <a href="./" style="display: flex; align-items: center;"><img class="logo" src="assets/logo-web.png" alt="Helyx Labs Logo"></a>
             <nav>
                 <ul>
-                    <li><a href="mission">Mission</a></li>
-                    <li><a href="roadmap">Roadmap</a></li>
-                    <li><a href="spectra">Spectra</a></li>
-                    <li><a href="core">Helyx Core</a></li>
+                    <li><a href="./mission/">Mission</a></li>
+                    <li><a href="./evolution/">Evolution</a></li>
+                    <li><a href="./spectra/">Spectra</a></li>
+                    <li><a href="./core/">Helyx Core</a></li>
                 </ul>
             </nav>
             <div class="nav-actions">
-                <a href="spectra">Explore Spectra</a>
+                <a href="./spectra/explore/">Explore Spectra</a>
             </div>
         </div>
     </header>
 
-    <!--MAIN CONTENT-->
-    <main>
-        <!-- HERO -->
-        <section class="hero">
-            <div>
-                <h1 id="hero-title"></h1>
-                <p id="hero-info"></p>
-                <div class="hero-buttons">
-                    <a href="#" id="hero-btn-1" class="btn-primary"></a>
-                    <a href="#" id="hero-btn-2" class="btn-secondary"></a>
-                </div>
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div>
+            <h1>Engineering the <span>Next Frontier</span></h1>
+            <p>Explore the web faster, simpler, and more human with Spectra — AI tools built directly into your browser for seamless productivity.</p>
+            <div class="hero-buttons">
+                <a href="./spectra/versions/" class="btn-primary">Try Spectra Now</a>
+                <a href="./spectra/explore/" class="btn-secondary">Learn More</a>
             </div>
-            <div class="hero-image">System • Interface • Platform</div>
-        </section>
+        </div>
+        <div class="hero-image">
+            <img src="assets/spectra-screenshot.png" alt="Spectra browser interface showing its user-interface" style="width:100%; height:100%; object-fit: cover; border-radius: 16px;" />
+        </div>
+    </section>
 
-        <!-- MISSION -->
-        <section id="mission">
-            <h2 class="section-title">Mission</h2>
-            <p class="section-sub" id="mission-intro"></p>
-            <div class="grid">
-                <div class="card">
-                    <h3 id="mission1-title"></h3><p id="mission1-info"></p>
-                </div>
-                <div class="card">
-                    <h3 id="mission2-title"></h3><p id="mission2-info"></p>
-                </div>
-                <div class="card">
-                    <h3 id="mission3-title"></h3><p id="mission3-info"></p>
-                </div>
+    <!-- MISSION -->
+    <section id="mission">
+        <h2 class="section-title">Mission</h2>
+        <p class="section-sub">Helyx Labs exists to show what AI can actually do when applied properly — not science fiction, just real AI systems that make digital work faster and more human.</p>
+        <div class="grid">
+            <div class="card">
+                <h3>Remove Friction</h3>
+                <p>AI tools that simplify writing, searching, organizing, and building without forcing you to change the way you work.</p>
             </div>
-        </section>
-
-        <!-- PLATFORMS -->
-        <section>
-            <h2 class="section-title">Platforms</h2>
-            <p class="section-sub" id="platforms-intro"></p>
-
-            <div class="grid">
-                <div class="card">
-                    <span class="product-tag" id="platform1-tag"></span>
-                    <h3 id="platform1-title"></h3><p id="platform1-info"></p>
-                    <br />
-                    <a href="#" class="btn-secondary" id="platform1-btn"></a>
-                </div>
-
-                <div class="card">
-                    <span class="product-tag" id="platform2-tag"></span>
-                        <h3 id="platform2-title"></h3><p id="platform2-info"></p>
-                        <br />
-                        <a href="./spectra/explore/" class="btn-secondary" id="platform2-btn"></a>
-                </div>
+            <div class="card">
+                <h3>Modern Workflows</h3>
+                <p>Focus on accelerating the workflows people already have, integrating tools that adapt to you, not the other way around.</p>
             </div>
-        </section>
-    </main>
+            <div class="card">
+                <h3>Human-Centric AI</h3>
+                <p>Software that understands context, intent, and language naturally, making your digital work smarter, not harder.</p>
+            </div>
+        </div>
+    </section>
 
-    <!--FOOTER-->
+    <!-- NAME ORIGIN -->
+    <section id="name-origin">
+        <h2 class="section-title">Origin of Helyx Labs</h2>
+        <p class="section-sub">The name Helyx Labs comes from our core idea: a helix symbolizes growth, connection, and evolution — just like how our AI tools aim to evolve the way humans work digitally.</p>
+    </section>
+
+    <!-- SPECTRA EVOLUTION -->
+    <section id="spectra">
+        <h2 class="section-title">What We’re Building With Spectra</h2>
+        <p class="section-sub">Spectra is more than a browser — it’s a platform for productivity, AI integration, and smart automation. Here’s what’s coming:</p>
+        <div class="grid">
+            <div class="card">
+                <span class="product-tag">Feature</span>
+                <h3>AI-Integrated Tabs</h3>
+                <p>Organize, summarize, and automate your workflow directly within your browser tabs.</p>
+            </div>
+            <div class="card">
+                <span class="product-tag">Feature</span>
+                <h3>Smart Search</h3>
+                <p>Get intelligent search results that understand context, not just keywords.</p>
+            </div>
+            <div class="card">
+                <span class="product-tag">Feature</span>
+                <h3>Automation Tools</h3>
+                <p>Integrate routines and AI-assisted tasks to speed up repetitive work.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
-
             <div>
                 <h4>Helyx Labs</h4>
-                <p id="footer-tagline" style="color: var(--text-muted); font-size: 0.9rem;"></p>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">
+                    Building systems that outlast trends.
+                </p>
             </div>
-
             <div>
-                <h4>Platforms</h4>
-                <a href="core">Helyx Core</a>
-                <a href="spectra">Spectra Browser</a>
-                <a href="./spectra/versions/">Spectra Versions</a>
+                <h4>Explore</h4>
+                <a href="./mission/">Mission</a>
+                <a href="./evolution/">Evolution</a>
+                <a href="./ethos/">Ethos</a>
+                <a href="./spectra/">Spectra</a>
+                <a href="./core/">Helyx Core</a>
             </div>
-
             <div>
-                <h4>Research</h4>
-                <a href="mission">Mission</a>
-                <a href="roadmap">Roadmap</a>
-                <a href="https://github.com/Helyx-Labs" target="_blank">GitHub</a>
+                <h4>Spectra</h4>
+                <a href="./spectra/">Overview</a>
+                <a href="./spectra/explore/">Explore</a>
+                <a href="./spectra/versions/">Versions</a>
+                <a href="./spectra/privacy-policy/">Privacy Policy</a>
+                <a href="./spectra/terms-of-service/">Terms of Service</a>
             </div>
-
             <div>
-                <h4>External</h4>
+                <h4>Social</h4>
+                <a href="https://open.spotify.com/user/31fkz65tsmlmw4ydz3jnga2yuziy?si=1abfe31754124da6" target="_blank">Spotify</a>
                 <a href="https://www.youtube.com/@HelyxLabs" target="_blank">YouTube</a>
-                <a href="https://x.com/HelyxLabs" target="_blank">X / Twitter</a>
+                <a href="https://github.com/Helyx-Labs" target="_blank">GitHub</a>
                 <a href="https://www.linkedin.com/in/helyx-labs-a16296380" target="_blank">LinkedIn</a>
+                <a href="https://x.com/HelyxLabs" target="_blank">X / Twitter</a>
             </div>
-
         </div>
-
         <div class="copyright">
             &copy; <span id="y"></span> Helyx Labs • All rights reserved
         </div>
-    
     </footer>
+
+    <script>
+        document.getElementById("y").innerHTML = new Date().getFullYear();
+    </script>
 </body>
-
-<script type="module">
-
-    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
-
-    const supabase = createClient(
-        "https://fhnqoxviinkormcgikhy.supabase.co",
-        "sb_publishable__UR8-57E5ItsS87rnBhXIg___AH8ECy"
-    )
-
-    const { data } = await supabase
-        .from("content")
-        .select("*")
-        .eq("page", "home")
-
-    const map = {}
-    data.forEach(row => map[row.section] = row.content)
-
-    document.getElementById("hero-title").innerHTML = map['hero.title'] || ""
-    document.getElementById("hero-info").innerHTML = map['hero.info'] || ""
-    document.getElementById("hero-btn-1").innerHTML = map['hero.btn1.txt'] || ""
-    document.getElementById("hero-btn-1").href = map['hero.btn1.link'] || "#"
-    document.getElementById("hero-btn-2").innerHTML = map['hero.btn2.txt'] || ""
-    document.getElementById("hero-btn-2").href = map['hero.btn2.link'] || "#"
-
-    document.getElementById("mission-intro").innerHTML = map['mission.intro'] || ""
-    document.getElementById("mission1-title").innerHTML = map['mission1.title'] || ""
-    document.getElementById("mission1-info").innerHTML = map['mission1.info'] || ""
-    document.getElementById("mission2-title").innerHTML = map['mission2.title'] || ""
-    document.getElementById("mission2-info").innerHTML = map['mission2.info'] || ""
-    document.getElementById("mission3-title").innerHTML = map['mission3.title'] || ""
-    document.getElementById("mission3-info").innerHTML = map['mission3.info'] || ""
-
-    document.getElementById("platforms-intro").innerHTML = map['platforms.intro'] || ""
-    document.getElementById("platform1-tag").innerHTML = map['platform1.tag'] || ""
-    document.getElementById("platform1-title").innerHTML = map['platform1.title'] || ""
-    document.getElementById("platform1-info").innerHTML = map['platform1.info'] || ""
-    document.getElementById("platform1-btn").innerHTML = map['platform1.btn.txt'] || ""
-    document.getElementById("platform1-btn").href = map['platform1.btn.link'] || "#"
-    document.getElementById("platform2-tag").innerHTML = map['platform2.tag'] || ""
-    document.getElementById("platform2-title").innerHTML = map['platform2.title'] || ""
-    document.getElementById("platform2-info").innerHTML = map['platform2.info'] || ""
-    document.getElementById("platform2-btn").innerHTML = map['platform2.btn.txt'] || ""
-    document.getElementById("platform2-btn").href = map['platform2.btn.link'] || "#"
-
-    document.getElementById("footer-tagline").innerHTML = map['footer.tagline'] || ""
-
-    document.getElementById("y").innerHTML = new Date().getFullYear()
-</script>
-
 </html>

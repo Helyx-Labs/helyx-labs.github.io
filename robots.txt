@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /dev/
+Disallow: /ethos/
+Disallow: /core/
+
+Sitemap: https://helyx-labs.github.io/sitemap.xml
